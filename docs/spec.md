@@ -165,7 +165,9 @@ The OSR-Expr operator names shall follow PascalCase convention, starting with an
 OSR-Expr shall represent universal and existential quantification as
 `["Forall", [variable, ...], body]` and `["Exists", [variable, ...], body]`.
 The bound-variable list shall be non-empty, contain unique plain identifiers,
-and shall not contain pattern wildcards.
+and shall not contain pattern wildcards in a concrete expression. In a rule
+pattern or result, a sequence wildcard may be the sole list item in order to
+capture and reproduce a complete bound-variable list.
 
 **OSR-X-006** [Optional feature]
 The scope of each variable in a quantified expression shall be its body only.

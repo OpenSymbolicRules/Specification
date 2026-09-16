@@ -10,9 +10,9 @@
   "rules": [
     {
       "id": 1,
-      "pattern": ["Not", ["Forall", ["x"], "p_"]],
+      "pattern": ["Not", ["Forall", ["xs__"], "p_"]],
       "constraints": [],
-      "result": ["Exists", ["x"], ["Not", "p_"]],
+      "result": ["Exists", ["xs__"], ["Not", "p_"]],
       "description": "Negation of a universal quantifier."
     }
   ]
