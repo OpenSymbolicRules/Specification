@@ -20,6 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   semantics and validation examples.
 - Bound-variable sequence wildcards for quantifier rules that preserve an
   arbitrary lexical binder list.
+- MIT licensing and an OpenMath attribution notice.
 
 ### Changed
 - Made ecosystem discovery a normative specification requirement.

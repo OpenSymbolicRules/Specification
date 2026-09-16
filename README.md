@@ -33,3 +33,8 @@ rule sets. Logic is independently discoverable through the ecosystem manifest.
 - `schemas/`: The JSON Schema definitions that all OSR rule bases must follow.
 - `docs/`: Technical documentation and RFCs.
 - `ecosystem.json`: Machine-readable catalogue of OSR repositories.
+
+## License
+
+This repository is licensed under the [MIT License](LICENSE). OpenMath
+identifiers are referenced for semantic interoperability; see [NOTICE.md](NOTICE.md).
