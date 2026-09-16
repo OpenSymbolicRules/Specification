@@ -1,0 +1,66 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://domain.org/schemas/v0.1/inference-test-file.schema.json",
+  "title": "OSR Inference Test File",
+  "description": "A JSON file containing test cases for multi-premise inference.",
+  "type": "object",
+  "required": ["$schema", "section", "title", "tests"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "const": "open-symbolic-rules/v0.1/inference-test"
+    },
+    "section": {
+      "type": "string",
+      "pattern": "^[0-9]+(\\.[0-9]+)*$"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "tests": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/test"
+      }
+    }
+  },
+  "definitions": {
+    "osr-expr": {
+      "$ref": "osr-expr.schema.json#/definitions/osr-expr"
+    },
+    "test": {
+      "type": "object",
+      "required": ["id", "premises", "expected_conclusion", "num_steps"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "premises": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "$ref": "#/definitions/osr-expr"
+          }
+        },
+        "expected_conclusion": {
+          "$ref": "#/definitions/osr-expr"
+        },
+        "num_steps": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "grade": {
+          "type": "string",
+          "enum": ["A", "B", "C", "F"]
+        },
+        "comment": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

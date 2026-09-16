@@ -1,0 +1,84 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://domain.org/schemas/v0.1/inference-file.schema.json",
+  "title": "OSR Inference File",
+  "description": "A JSON file containing sound multi-premise inference rules.",
+  "type": "object",
+  "required": ["$schema", "section", "title", "system", "semantics", "inferences"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "const": "open-symbolic-rules/v0.1/inference"
+    },
+    "section": {
+      "type": "string",
+      "pattern": "^[0-9]+(\\.[0-9]+)*$"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "system": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The inference system to which this file belongs."
+    },
+    "semantics": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "string",
+        "pattern": "^openmath:[A-Za-z][A-Za-z0-9_]*#[A-Za-z][A-Za-z0-9_]*$"
+      }
+    },
+    "inferences": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/inference"
+      }
+    }
+  },
+  "definitions": {
+    "osr-expr": {
+      "$ref": "osr-expr.schema.json#/definitions/osr-expr"
+    },
+    "inference": {
+      "type": "object",
+      "required": ["id", "premises", "constraints", "conclusion"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "premises": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "$ref": "#/definitions/osr-expr"
+          },
+          "description": "Expressions that remain available after the conclusion is derived."
+        },
+        "constraints": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/osr-expr"
+          }
+        },
+        "conclusion": {
+          "$ref": "#/definitions/osr-expr"
+        },
+        "description": {
+          "type": "string"
+        },
+        "references": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

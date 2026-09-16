@@ -87,6 +87,30 @@
         }
       }
     },
+    "inference_profiles": {
+      "type": "object",
+      "description": "Named complete load manifests for explicit multi-premise inference modes.",
+      "propertyNames": {
+        "pattern": "^[a-z][a-z0-9_]*$"
+      },
+      "additionalProperties": {
+        "type": "object",
+        "required": ["load_order"],
+        "additionalProperties": false,
+        "properties": {
+          "description": {
+            "type": "string"
+          },
+          "load_order": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
     "feature_flags": {
       "type": "object",
       "additionalProperties": {

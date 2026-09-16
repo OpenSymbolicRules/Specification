@@ -14,6 +14,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Logic rule-set entry, including Boolean algebra and propositional logic domains.
 - Optional named rule-set profiles, allowing explicit alternate load manifests
   such as `to_cnf` and `to_dnf`.
+- Separate inference-file and inference-test schemas, plus explicit inference
+  profiles for sound multi-premise derivations such as resolution.
 
 ### Changed
 - Made ecosystem discovery a normative specification requirement.

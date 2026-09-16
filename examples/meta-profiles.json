@@ -21,5 +21,13 @@
         "2-normal-forms/to-dnf.json"
       ]
     }
+  },
+  "inference_profiles": {
+    "resolution": {
+      "description": "Complete manifest for propositional resolution.",
+      "load_order": [
+        "inferences/1-resolution.json"
+      ]
+    }
   }
 }

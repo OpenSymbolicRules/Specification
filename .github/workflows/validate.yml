@@ -30,3 +30,9 @@ jobs:
 
       - name: Validate metadata profile example
         run: check-jsonschema --schemafile schemas/meta.schema.json --base-uri "file://${PWD}/schemas/" examples/meta-profiles.json
+
+      - name: Validate inference example
+        run: check-jsonschema --schemafile schemas/inference-file.schema.json --base-uri "file://${PWD}/schemas/" examples/propositional-resolution.inference.json
+
+      - name: Validate inference test example
+        run: check-jsonschema --schemafile schemas/inference-test-file.schema.json --base-uri "file://${PWD}/schemas/" examples/propositional-resolution.inference-test.json

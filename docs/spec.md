@@ -584,6 +584,12 @@ shall not combine the default manifest with a selected profile manifest.
 > caller deliberately selects a normal-form transformation instead of enabling
 > it during ordinary simplification.
 
+**OSR-F-009e** [Optional feature]
+Where a rule set provides multi-premise inference, `meta.json` shall contain an
+`"inference_profiles"` object. Each profile shall provide a complete ordered
+manifest of inference files. An inference profile shall be selected explicitly
+and shall not be treated as a rewrite-rule manifest.
+
 ### 5.3 File organisation
 
 **OSR-F-010** [Ubiquitous]
@@ -596,7 +602,8 @@ Each JSON file shall contain only the rules belonging to a single taxonomy secti
 A `meta.json` file at the root of the directory tree shall describe the format
 version, naming conventions, list of supported predicates, the load manifest
 (`"load_order"`), optional named profiles (`"profiles"`), conditional loading
-flags (`"feature_flags"`), and any declared extensions.
+flags (`"feature_flags"`), optional inference profiles (`"inference_profiles"`),
+and any declared extensions.
 
 **OSR-F-012a** [Optional feature]
 Where conditional loading is supported, the `meta.json` file shall contain
@@ -629,6 +636,23 @@ Each JSON file shall not exceed 1 MB to enable incremental loading.
 
 **OSR-F-014** [Ubiquitous]
 The format shall support lazy loading by section, without requiring the full set of ~7,800 rules to be loaded at once.
+
+### 5.5 Multi-premise inference
+
+**OSR-F-014a** [Optional feature]
+An inference file shall use the schema identifier
+`"open-symbolic-rules/v0.1/inference"` and shall declare its inference system,
+OpenMath semantics, and ordered inference entries.
+
+**OSR-F-014b** [Optional feature]
+Each inference entry shall contain at least two `"premises"`, an array of
+`"constraints"`, and one `"conclusion"`. Applying an inference shall retain
+its premises and add the conclusion to the derivation state.
+
+**OSR-F-014c** [Optional feature]
+An inference test file shall use the schema identifier
+`"open-symbolic-rules/v0.1/inference-test"` and shall contain initial premises,
+an expected conclusion, and an expected step count.
 
 ### Ecosystem discovery
 
@@ -1049,6 +1073,11 @@ specified sequence.
 When the Loader receives a named profile for a directory containing `meta.json`,
 it shall load the complete `"profiles"[name]."load_order"` manifest in the
 specified sequence and shall reject an unknown profile name.
+
+**OSR-L-002b** [Event-driven]
+When the Loader receives a named inference profile, it shall load the complete
+`"inference_profiles"[name]."load_order"` manifest and create a derivation
+state in which inference conclusions are added without removing premises.
 
 > **Design note.** OSR requires a specific load order that is not purely
 > alphabetical. The `"load_order"` manifest is authoritative.
