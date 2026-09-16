@@ -572,6 +572,18 @@ it shall be treated as commented out (disabled) and shall not be loaded.
 This mirrors OSR's practice of commenting out rule sections (e.g.
 `(*LoadRules[{"8 Special functions", "8.10 Bessel functions"}]; *)`).
 
+**OSR-F-009d** [Optional feature]
+Where a rule set provides named rewrite modes, `meta.json` shall contain a
+`"profiles"` object. Each profile shall provide a complete `"load_order"`
+manifest, whose order is authoritative when that profile is selected. A Loader
+shall not combine the default manifest with a selected profile manifest.
+
+> **Design note — explicit profiles.** Some mathematically valid rewrites,
+> such as distributivity, can increase expression size. A rule set can expose
+> those rewrites under names such as `"to_cnf"` or `"to_dnf"` so that a
+> caller deliberately selects a normal-form transformation instead of enabling
+> it during ordinary simplification.
+
 ### 5.3 File organisation
 
 **OSR-F-010** [Ubiquitous]
@@ -583,8 +595,8 @@ Each JSON file shall contain only the rules belonging to a single taxonomy secti
 **OSR-F-012** [Ubiquitous]
 A `meta.json` file at the root of the directory tree shall describe the format
 version, naming conventions, list of supported predicates, the load manifest
-(`"load_order"`), conditional loading flags (`"feature_flags"`), and any
-declared extensions.
+(`"load_order"`), optional named profiles (`"profiles"`), conditional loading
+flags (`"feature_flags"`), and any declared extensions.
 
 **OSR-F-012a** [Optional feature]
 Where conditional loading is supported, the `meta.json` file shall contain
@@ -1032,6 +1044,11 @@ When the Loader receives a path to a JSON file, the Loader shall validate the fi
 When the Loader receives a path to a directory containing `meta.json`, the
 Loader shall read the `"load_order"` manifest and load rule files in the
 specified sequence.
+
+**OSR-L-002a** [Event-driven]
+When the Loader receives a named profile for a directory containing `meta.json`,
+it shall load the complete `"profiles"[name]."load_order"` manifest in the
+specified sequence and shall reject an unknown profile name.
 
 > **Design note.** OSR requires a specific load order that is not purely
 > alphabetical. The `"load_order"` manifest is authoritative.

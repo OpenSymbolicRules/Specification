@@ -27,3 +27,6 @@ jobs:
 
       - name: Validate ecosystem manifest
         run: check-jsonschema --schemafile schemas/ecosystem.schema.json ecosystem.json
+
+      - name: Validate metadata profile example
+        run: check-jsonschema --schemafile schemas/meta.schema.json --base-uri "file://${PWD}/schemas/" examples/meta-profiles.json

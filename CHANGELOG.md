@@ -12,6 +12,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - README ecosystem catalogue covering the specification, rule sets, and Julia client.
 - CI validation of all JSON schema meta-schemas and the ecosystem manifest.
 - Logic rule-set entry, including Boolean algebra and propositional logic domains.
+- Optional named rule-set profiles, allowing explicit alternate load manifests
+  such as `to_cnf` and `to_dnf`.
 
 ### Changed
 - Made ecosystem discovery a normative specification requirement.

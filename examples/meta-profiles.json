@@ -1,0 +1,25 @@
+{
+  "$schema": "open-symbolic-rules/v0.1",
+  "osr_version": "0.1.0",
+  "domain": "logic",
+  "title": "Profile manifest example",
+  "load_order": [
+    "1-simplification.json"
+  ],
+  "profiles": {
+    "to_cnf": {
+      "description": "Complete manifest for conjunctive normal form.",
+      "load_order": [
+        "1-simplification.json",
+        "2-normal-forms/to-cnf.json"
+      ]
+    },
+    "to_dnf": {
+      "description": "Complete manifest for disjunctive normal form.",
+      "load_order": [
+        "1-simplification.json",
+        "2-normal-forms/to-dnf.json"
+      ]
+    }
+  }
+}
