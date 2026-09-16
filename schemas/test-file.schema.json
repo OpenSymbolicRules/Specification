@@ -1,0 +1,95 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://domain.org/schemas/v0.1/test-file.schema.json",
+  "title": "OSR Test File",
+  "description": "A JSON file containing symbolic test problems. Conforms to EARS Specification OSR v0.1, §12.",
+  "type": "object",
+  "required": ["$schema", "section", "title", "tests"],
+  "additionalProperties": false,
+
+  "properties": {
+
+    "$schema": {
+      "type": "string",
+      "const": "open-symbolic-rules/v0.1",
+      "description": "Schema version identifier."
+    },
+
+    "section": {
+      "type": "string",
+      "pattern": "^[0-9]+(\\.[0-9]+)*$",
+      "description": "Taxonomy section number corresponding to the rules being tested.",
+      "examples": ["1.1.1", "4.1", "8.6"]
+    },
+
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Human-readable title of this test section."
+    },
+
+    "tests": {
+      "type": "array",
+      "description": "Array of symbolic test problems.",
+      "items": {
+        "$ref": "#/definitions/test-problem"
+      }
+    }
+  },
+
+  "definitions": {
+
+    "osr-expr": {
+      "$ref": "osr-expr.schema.json#/definitions/osr-expr"
+    },
+
+    "test-problem": {
+      "type": "object",
+      "required": ["id", "expression", "variable", "expected_result", "num_steps"],
+      "additionalProperties": false,
+      "description": "A single symbolic test problem. Per OSR-V-002.",
+
+      "properties": {
+
+        "id": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Unique positive integer test identifier."
+        },
+
+        "expression": {
+          "$ref": "#/definitions/osr-expr",
+          "description": "The input expression, in OSR-Expr format."
+        },
+
+        "variable": {
+          "type": "string",
+          "pattern": "^[a-zA-Z][a-zA-Z0-9]*$",
+          "description": "The primary variable (plain symbol, no wildcard suffix).",
+          "examples": ["x", "t", "u"]
+        },
+
+        "expected_result": {
+          "$ref": "#/definitions/osr-expr",
+          "description": "The optimal expected rewritten expression in OSR-Expr format. Results are compared by symbolic equivalence, not syntactic equality. Per OSR-V-003."
+        },
+
+        "num_steps": {
+          "type": "integer",
+          "description": "Expected number of rule application steps. Positive: steps needed. Zero: trivial. Negative: OSR cannot rewrite (absolute value may indicate complexity)."
+        },
+
+        "grade": {
+          "type": "string",
+          "enum": ["A", "B", "C", "F"],
+          "description": "Expected grade on the OSR scale: A (≤2× optimal size), B (>2× but correct), C (correct, sub-optimal), F (incorrect/timeout). Per OSR-V-004."
+        },
+
+        "comment": {
+          "type": "string",
+          "description": "Free-form comment about this test problem."
+        }
+      }
+    }
+  }
+}
