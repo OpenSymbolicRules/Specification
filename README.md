@@ -1,10 +1,10 @@
 # Open Symbolic Rules (OSR) - Specification
 
-This repository contains the core specification, JSON schemas, and documentation for the **Open Symbolic Rules (OSR)** standard.
+This repository contains the core specification, JSON schemas, and documentation for the **Open Symbolic Rules (OSR)** format.
 
 ## Overview
 
-The OSR standard defines a universal, language-agnostic JSON format for representing symbolic mathematics rewriting rules. It separates mathematical knowledge from specific Computer Algebra System (CAS) implementations.
+The OSR specification defines a universal, language-agnostic JSON format for representing symbolic mathematics rewriting rules. It separates mathematical knowledge from specific Computer Algebra System (CAS) implementations.
 
 By relying on [OpenMath](https://openmath.org/) Content Dictionaries (CDs) for function semantics, OSR ensures that rules are mathematically rigorous and unambiguous, while remaining easily readable by humans and machines.
 

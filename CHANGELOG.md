@@ -10,6 +10,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Machine-readable `ecosystem.json` manifest and schema for repository discovery.
 - README ecosystem catalogue covering the specification, rule sets, and Julia client.
+- CI validation of all JSON schema meta-schemas and the ecosystem manifest.
+
+### Changed
+- Made ecosystem discovery a normative specification requirement.
+- Describe OSR as a specification and interchange format rather than an institutional standard.
 
 ### Added
 - Initial structure for the Open Symbolic Rules Specification repository

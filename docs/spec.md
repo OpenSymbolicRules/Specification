@@ -1,6 +1,6 @@
 # EARS Specification — Specification for Open Symbolic Rules (OSR)
 
-**Project:** Open Symbolic Rules (OSR) Standard
+**Project:** Open Symbolic Rules (OSR) Specification
 **Version:** 0.1.0-draft
 **Date:** 2026-02-23
 **Method:** EARS (Easy Approach to Requirements Syntax) — Alistair Mavin, 2009
@@ -28,7 +28,7 @@ knowledge, covering the full set of ~7,800 rules and 72,000+ test problems.
 > This specification targets OSR 5's rule set. All references to "the full
 > rule set" mean approximately 7,800 rules unless otherwise noted.
 
-### 1.1 Standardisation context
+### 1.1 Interoperability context
 
 Mathematical expression formats in the current landscape:
 
@@ -42,19 +42,19 @@ Mathematical expression formats in the current landscape:
 None of these formats addresses **symbolic rule representation** (pattern
 matching with wildcards, constraint predicates, recursive rule application).
 
-### 1.2 Standardisation strategy
+### 1.2 Design strategy
 
 This specification adopts a **hybrid approach** ("Profile + Own the Spec"):
 
 1. **Define OSR-Expr** formally (JSON Schema, ABNF grammar) as a self-contained
-   micro-standard within this specification.
+   profile defined within this specification.
 2. **Align operator names** with MathLive MathJSON conventions (PascalCase, same
    names: `Add`, `Sin`, `Power`, etc.) for de facto compatibility.
 3. **Provide mapping tables** to OpenMath Content Dictionaries and Content MathML
    for formal interoperability (see Annex A).
 4. **Extend with OSR-specific operators** (`Int`, `Dist`, `Subst`, `Simp`,
    wildcards, utility functions, special functions) that exist in no current
-   standard — because no existing format covers pattern matching for symbolic
+   format — because no existing interoperable format covers pattern matching for symbolic
    integration.
 
 This specification does not *depend* on MathJSON (which may evolve or be
@@ -617,6 +617,25 @@ Each JSON file shall not exceed 1 MB to enable incremental loading.
 
 **OSR-F-014** [Ubiquitous]
 The format shall support lazy loading by section, without requiring the full set of ~7,800 rules to be loaded at once.
+
+### Ecosystem discovery
+
+**OSR-F-015** [Ubiquitous]
+The repository that publishes the OSR specification shall publish an
+`ecosystem.json` manifest at its root. The manifest shall conform to
+`schemas/ecosystem.schema.json` and shall be the machine-readable catalogue of
+the OSR ecosystem.
+
+**OSR-F-016** [Ubiquitous]
+Each entry in `ecosystem.json` shall declare a stable identifier, repository
+name and URL, repository kind, human-readable description, and dependency
+identifiers. Rule-set entries shall additionally declare the mathematical
+domains they provide.
+
+**OSR-F-017** [Ubiquitous]
+The specification repository README shall present the same ecosystem in a
+human-readable form and link to `ecosystem.json`. The JSON manifest is the
+authoritative source for machine discovery.
 
 ### 5.5 Binary serialisation (CBOR)
 

@@ -1,0 +1,29 @@
+name: Validate specification
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Validate JSON schemas and ecosystem manifest
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install validator
+        run: python -m pip install check-jsonschema==0.38.0
+
+      - name: Validate schema meta-schemas
+        run: check-jsonschema --check-metaschema schemas/*.schema.json
+
+      - name: Validate ecosystem manifest
+        run: check-jsonschema --schemafile schemas/ecosystem.schema.json ecosystem.json
