@@ -1,0 +1,19 @@
+{
+  "$schema": "open-symbolic-rules/v0.1",
+  "section": "1.1",
+  "title": "Quantifier Negation",
+  "semantics": {
+    "Exists": "openmath:quant1#exists",
+    "Forall": "openmath:quant1#forall",
+    "Not": "openmath:logic1#not"
+  },
+  "rules": [
+    {
+      "id": 1,
+      "pattern": ["Not", ["Forall", ["x"], "p_"]],
+      "constraints": [],
+      "result": ["Exists", ["x"], ["Not", "p_"]],
+      "description": "Negation of a universal quantifier."
+    }
+  ]
+}

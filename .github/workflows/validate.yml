@@ -36,3 +36,9 @@ jobs:
 
       - name: Validate inference test example
         run: check-jsonschema --schemafile schemas/inference-test-file.schema.json --base-uri "file://${PWD}/schemas/" examples/propositional-resolution.inference-test.json
+
+      - name: Validate quantifier rule example
+        run: check-jsonschema --schemafile schemas/rule-file.schema.json --base-uri "file://${PWD}/schemas/" examples/quantifier-negation.rule.json
+
+      - name: Validate quantifier test example
+        run: check-jsonschema --schemafile schemas/test-file.schema.json --base-uri "file://${PWD}/schemas/" examples/quantifier-negation.test.json

@@ -16,6 +16,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   such as `to_cnf` and `to_dnf`.
 - Separate inference-file and inference-test schemas, plus explicit inference
   profiles for sound multi-premise derivations such as resolution.
+- Lexically scoped `Forall` and `Exists` OSR-Expr forms with OpenMath `quant1`
+  semantics and validation examples.
 
 ### Changed
 - Made ecosystem discovery a normative specification requirement.

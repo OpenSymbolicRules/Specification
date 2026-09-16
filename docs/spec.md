@@ -122,7 +122,7 @@ where translation is required (see Annex A).
 The OSR-Expr language shall be defined by the following ABNF grammar (RFC 5234):
 
 ```abnf
-osr-expr    = number / symbol / string / function-expr
+osr-expr    = number / symbol / string / function-expr / quantifier-expr
 
 number       = json-number              ; as defined in RFC 8259 §6
 
@@ -131,6 +131,11 @@ symbol       = json-string              ; matching the symbol grammar below
 string       = json-string              ; any JSON string not matching symbol grammar
 
 function-expr = "[" operator "," osr-expr *("," osr-expr) "]"
+
+quantifier-expr = "[" quantifier "," bound-variables "," osr-expr "]"
+quantifier      = %s"Forall" / %s"Exists"
+bound-variables = "[" bound-variable *("," bound-variable) "]"
+bound-variable  = ALPHA *(ALPHA / DIGIT)
 
 operator     = json-string              ; matching /^[A-Z][a-zA-Z0-9$]*$/
 
@@ -155,6 +160,23 @@ The OSR-Expr language shall be self-contained: its grammar, operator catalogue, 
 
 **OSR-X-004** [Ubiquitous]
 The OSR-Expr operator names shall follow PascalCase convention, starting with an uppercase letter A-Z.
+
+**OSR-X-005** [Optional feature]
+OSR-Expr shall represent universal and existential quantification as
+`["Forall", [variable, ...], body]` and `["Exists", [variable, ...], body]`.
+The bound-variable list shall be non-empty, contain unique plain identifiers,
+and shall not contain pattern wildcards.
+
+**OSR-X-006** [Optional feature]
+The scope of each variable in a quantified expression shall be its body only.
+Nested binders may shadow an outer variable with the same identifier. A
+Phrasebook shall preserve lexical scope and shall alpha-rename bound variables
+when required to avoid capture during translation or substitution.
+
+**OSR-X-007** [Optional feature]
+Rule files using `Forall` or `Exists` shall map them respectively to
+`openmath:quant1#forall` and `openmath:quant1#exists` in their `semantics`
+object.
 
 ### 4.2 Operator catalogue — Core arithmetic
 
