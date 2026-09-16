@@ -49,6 +49,15 @@
       "depends_on": ["specification"]
     },
     {
+      "id": "logic",
+      "name": "Logic",
+      "url": "https://github.com/OpenSymbolicRules/Logic",
+      "kind": "rule-set",
+      "description": "Boolean simplification and propositional logic rules with OpenMath semantics.",
+      "domains": ["logic", "boolean-algebra"],
+      "depends_on": ["specification"]
+    },
+    {
       "id": "open-symbolic-rules-julia",
       "name": "OpenSymbolicRules.jl",
       "url": "https://github.com/OpenSymbolicRules/OpenSymbolicRules.jl",

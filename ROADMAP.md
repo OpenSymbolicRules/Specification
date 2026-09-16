@@ -1,6 +1,6 @@
 # Open Symbolic Rules (OSR) - Roadmap
 
-This document outlines the strategic vision and upcoming milestones for the Open Symbolic Rules standard and its surrounding ecosystem.
+This document outlines the strategic vision and upcoming milestones for the Open Symbolic Rules specification and its surrounding ecosystem.
 
 ## Phase 1: Foundation (Current)
 *Establish the universal format and the first massive dataset.*
@@ -19,10 +19,11 @@ This document outlines the strategic vision and upcoming milestones for the Open
 - [ ] **Rust / CAS**: Prototype a standalone Rust engine capable of evaluating OSR rules with high performance.
 
 ## Phase 3: Domain Expansion
-*Extend the standard beyond integration into general algebra.*
+*Extend the specification beyond integration into general algebra and logic.*
 
-- [ ] Create the **`Algebra`** repository to host rules for polynomial expansion, factoring, and simplification.
-- [ ] Create the **`Trigonometry`** repository to host rules for trigonometric identities and simplifications.
+- [x] Create the **`Algebra`** repository to host rules for polynomial expansion, factoring, and simplification.
+- [x] Create the **`Trigonometry`** repository to host rules for trigonometric identities and simplifications.
+- [x] Create the **`Logic`** repository to host Boolean simplification and propositional logic rules.
 - [ ] Extend the OSR schemas to support conditional branching and loop-based rewrites (if necessary for algebraic limits).
 
 ## Phase 4: Hybrid Architecture (SMT Solvers)
@@ -33,7 +34,7 @@ This document outlines the strategic vision and upcoming milestones for the Open
 - [ ] Delegate the validation of these algebraic constraints to the underlying SMT solver (e.g., via `SymbolicSMT.jl` in Julia).
 
 ## Known Technical Limitations & Strategic Mitigations
-*While OSR standardizes pattern-matching rules beautifully, we acknowledge the intrinsic limits of a purely rule-based JSON approach.*
+*While OSR specifies interoperable pattern-matching rules, we acknowledge the intrinsic limits of a purely rule-based JSON approach.*
 
 1. **Procedural Algorithms vs. Pattern Matching**
    - **Limitation**: Pure JSON rewrite rules cannot efficiently encode full procedural algorithms like the Risch algorithm (for integration), the full GrÃ¶bner basis algorithm, or Risch-Norman extensions. These algorithms require arbitrary iterative arithmetic over rational function fields, mutable loop states, and complex branching.

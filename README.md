@@ -21,11 +21,12 @@ sets, clients, their domains, and their dependencies.
 | [Algebra](https://github.com/OpenSymbolicRules/Algebra) | Simplification, exponent, logarithm, and polynomial rules | Algebra |
 | [Calculus](https://github.com/OpenSymbolicRules/Calculus) | Limit and derivative rules | Calculus |
 | [Trigonometry](https://github.com/OpenSymbolicRules/Trigonometry) | Identities and simplification rules | Trigonometry |
+| [Logic](https://github.com/OpenSymbolicRules/Logic) | Boolean simplification and propositional logic rules | Logic / Boolean algebra |
 | [OpenSymbolicRules.jl](https://github.com/OpenSymbolicRules/OpenSymbolicRules.jl) | Julia client and loader | Julia |
 
 All rule-set repositories depend on this specification. The Julia client
 consumes the specification and can load the algebra, calculus, and trigonometry
-rule sets.
+rule sets. Logic is independently discoverable through the ecosystem manifest.
 
 ## Contents
 
