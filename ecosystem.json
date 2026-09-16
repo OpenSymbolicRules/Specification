@@ -1,0 +1,61 @@
+{
+  "$schema": "open-symbolic-rules/v0.1/ecosystem",
+  "osr_version": "0.1.0",
+  "title": "Open Symbolic Rules Ecosystem",
+  "repositories": [
+    {
+      "id": "specification",
+      "name": "Specification",
+      "url": "https://github.com/OpenSymbolicRules/Specification",
+      "kind": "specification",
+      "description": "Core OSR specification, JSON schemas, and interoperability documentation.",
+      "domains": ["all"],
+      "depends_on": []
+    },
+    {
+      "id": "integration",
+      "name": "Integration",
+      "url": "https://github.com/OpenSymbolicRules/Integration",
+      "kind": "rule-set",
+      "description": "Rule-based symbolic integration data derived from RUBI.",
+      "domains": ["integration"],
+      "depends_on": ["specification"]
+    },
+    {
+      "id": "algebra",
+      "name": "Algebra",
+      "url": "https://github.com/OpenSymbolicRules/Algebra",
+      "kind": "rule-set",
+      "description": "Algebraic simplification, exponent, logarithm, and polynomial rules.",
+      "domains": ["algebra"],
+      "depends_on": ["specification"]
+    },
+    {
+      "id": "calculus",
+      "name": "Calculus",
+      "url": "https://github.com/OpenSymbolicRules/Calculus",
+      "kind": "rule-set",
+      "description": "Limit and derivative rules represented with OpenMath semantics.",
+      "domains": ["calculus"],
+      "depends_on": ["specification"]
+    },
+    {
+      "id": "trigonometry",
+      "name": "Trigonometry",
+      "url": "https://github.com/OpenSymbolicRules/Trigonometry",
+      "kind": "rule-set",
+      "description": "Trigonometric identities and simplification rules.",
+      "domains": ["trigonometry"],
+      "depends_on": ["specification"]
+    },
+    {
+      "id": "open-symbolic-rules-julia",
+      "name": "OpenSymbolicRules.jl",
+      "url": "https://github.com/OpenSymbolicRules/OpenSymbolicRules.jl",
+      "kind": "client",
+      "description": "Julia client and OpenMath-aware adapter for loading OSR rule sets.",
+      "domains": ["julia"],
+      "depends_on": ["specification", "algebra", "calculus", "trigonometry"]
+    }
+  ]
+}
