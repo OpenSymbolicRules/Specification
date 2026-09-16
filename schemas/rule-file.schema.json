@@ -18,7 +18,7 @@
     "section": {
       "type": "string",
       "pattern": "^[0-9]+(\\.[0-9]+)*$",
-      "description": "Taxonomy section number (e.g. '1.1.1', '4.3', '8.6'). Per OSR-F-003, OSR-T-003.",
+      "description": "Taxonomy section number (e.g. '1.1.1', '4.3', '8.6'). Together with each rule id, this forms the required canonical rule identity `section:id`. Per OSR-F-003, OSR-F-008, OSR-T-003.",
       "examples": ["1.1.1", "3.2", "4.1.1.1", "8.10"]
     },
 
@@ -71,7 +71,7 @@
         "id": {
           "type": "integer",
           "minimum": 1,
-          "description": "Unique positive integer identifier for traceability and step-by-step display. NOT a priority key — priority is determined by load order + position in array. Per OSR-F-008, OSR-F-009."
+          "description": "Required positive integer component of the canonical rule identity `section:id`; ids must be unique within their containing rule file. NOT a priority key — priority is determined by load order + position in array. Per OSR-F-008, OSR-F-009."
         },
 
         "pattern": {

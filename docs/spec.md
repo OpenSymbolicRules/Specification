@@ -556,13 +556,18 @@ The `$schema` field shall reference the schema version in the form `"rubi-integr
 The `rules` field shall be a JSON array of objects, each representing one symbolic rule.
 
 **OSR-F-006** [Ubiquitous]
-Each rule object shall contain the mandatory fields `id` (unique integer), `pattern` (OSR-Expr), `constraints` (array of OSR-Expr), and `result` (OSR-Expr).
+Each rule object shall contain the mandatory fields `id` (positive integer,
+unique within the file), `pattern` (OSR-Expr), `constraints` (array of
+OSR-Expr), and `result` (OSR-Expr).
 
 **OSR-F-007** [Ubiquitous]
 Each rule object shall be allowed to contain the optional fields `description` (string), `section` (string), `references` (object), `comment` (string), and `derivation` (string).
 
 **OSR-F-008** [Ubiquitous]
-The `id` field of each rule shall be a positive integer, unique across all loaded files.
+Every rule shall have the canonical identity `section:id`, formed from the
+mandatory containing file's `section` and the rule's mandatory positive integer
+`id`. A Loader shall reject duplicate canonical identities across its loaded
+rule set. The `id` value alone is only unique within its containing file.
 
 ### 5.2 Rule ordering and priority
 
@@ -576,7 +581,8 @@ this combined sequence shall be applied.
 > of loading the rule-files below is crucial to ensure a functional Rubi
 > integrator!"* A rule in file `1.1.1.2` loaded before file `1.1.1.3` takes
 > priority regardless of numeric id values. The `id` field serves only
-> as a unique identifier for traceability and step-by-step display, not
+> as the local component of a canonical `section:id` identifier for
+> traceability and step-by-step display, not
 > as a priority key.
 
 **OSR-F-009a** [Ubiquitous]

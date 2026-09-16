@@ -21,6 +21,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Bound-variable sequence wildcards for quantifier rules that preserve an
   arbitrary lexical binder list.
 - MIT licensing and an OpenMath attribution notice.
+- Canonical rule identities (`section:id`) derived from mandatory rule-file
+  sections and mandatory positive rule identifiers.
 
 ### Changed
 - Made ecosystem discovery a normative specification requirement.
