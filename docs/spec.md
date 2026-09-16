@@ -516,7 +516,14 @@ The format shall use JSON (RFC 8259) as its serialisation syntax.
 The format shall use UTF-8 encoding without BOM.
 
 **OSR-F-003** [Ubiquitous]
-Each rule file shall contain a root JSON object with the mandatory fields `$schema`, `section`, `title`, and `rules`.
+Each rule file shall contain a root JSON object with the mandatory fields `$schema`, `section`, `title`, `semantics`, and `rules`.
+
+**OSR-F-003a** [Ubiquitous]
+The `semantics` object shall map every mathematical operator used by the rule
+file to an OpenMath Content Dictionary symbol using the identifier format
+`openmath:<cd>#<symbol>`. Constraint predicates defined by §7 are exempt from
+this mapping. A Loader shall reject a rule file whose mathematical operator has
+no corresponding OpenMath mapping.
 
 **OSR-F-004** [Ubiquitous]
 The `$schema` field shall reference the schema version in the form `"rubi-integration-rules/vX.Y"`.

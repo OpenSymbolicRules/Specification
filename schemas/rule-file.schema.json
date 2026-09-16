@@ -4,7 +4,7 @@
   "title": "OSR Rule File",
   "description": "A JSON file containing symbolic mathematical rules. Conforms to EARS Specification OSR v0.1, §5.",
   "type": "object",
-  "required": ["$schema", "section", "title", "rules"],
+  "required": ["$schema", "section", "title", "semantics", "rules"],
   "additionalProperties": false,
 
   "properties": {
@@ -36,10 +36,12 @@
 
     "semantics": {
       "type": "object",
-      "description": "Optional mapping of local function names used in the patterns to their official OpenMath Content Dictionaries (CDs). Resolves mathematical ambiguity.",
+      "minProperties": 1,
+      "description": "Mapping of every mathematical operator used in the file to its official OpenMath Content Dictionary symbol.",
       "additionalProperties": {
         "type": "string",
-        "description": "The OpenMath CD URI or identifier (e.g., 'openmath:arith1.root')"
+        "pattern": "^openmath:[A-Za-z][A-Za-z0-9_]*#[A-Za-z][A-Za-z0-9_]*$",
+        "description": "The OpenMath CD symbol identifier, for example 'openmath:arith1#root'."
       }
     },
 
