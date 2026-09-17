@@ -17,7 +17,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   complementary backends sharing OpenMath semantics, assumptions, and proof
   traces.
 - Roadmap requirements for explicit transform-result status, hierarchical
-  algorithm proof traces, and algebraic-structure-specific canonical forms.
+  algorithm proof traces, Laplace fixture coverage, and
+  algebraic-structure-specific canonical forms.
 - Machine-readable `ecosystem.json` manifest and schema for repository discovery.
 - README ecosystem catalogue covering the specification, rule sets, and Julia client.
 - CI validation of all JSON schema meta-schemas and the ecosystem manifest.

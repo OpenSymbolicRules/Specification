@@ -45,7 +45,12 @@ This document outlines the strategic vision and upcoming milestones for the Open
 - [ ] Define a portable transform result contract: a client shall distinguish
   a proved transform pair, a conditional pair with explicit assumptions, and
   an unevaluated transform. It must never silently present an unsupported
-  transform as a proved closed form.
+  transform as a proved closed form. The contract shall also represent a
+  divergent or inapplicable transform separately from an unknown result.
+- [ ] Add Laplace transform fixtures for linearity, shifts, derivatives,
+  convolution, rational inverse transforms, and time delay. Each fixture shall
+  declare the source variable, transform variable, side conditions, and the
+  intended region of convergence when it affects validity.
 - [ ] Establish a dedicated transform rule-set repository after the above
   semantics, variable binding, normalization, and convergence requirements are
   specified and schema-validated.
@@ -91,8 +96,10 @@ This document outlines the strategic vision and upcoming milestones for the Open
   or bidirectional mathematical identities could form rewrite cycles.
 - [ ] Define an algorithm-result and proof-trace envelope for host operations:
   it shall record input, output, assumptions, the selected algorithm or rule
-  identity, and nested substeps. This makes procedural and rule-based results
-  equally auditable without encoding a host implementation in a rule file.
+  identity, and nested substeps. It shall be serializable as JSON and permit
+  concise, normal, and detailed views without changing mathematical content.
+  This makes procedural and rule-based results equally auditable without
+  encoding a host implementation in a rule file.
 - [ ] Specify canonical-form contracts per algebraic structure. Flattening,
   sorting, cancellation, and sign normalization shall be enabled only where
   associativity, commutativity, identities, and domains justify them; scalar
