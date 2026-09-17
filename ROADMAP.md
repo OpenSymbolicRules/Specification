@@ -42,6 +42,10 @@ This document outlines the strategic vision and upcoming milestones for the Open
 - [ ] Add transform-pair fixtures, shift/scaling/convolution rules, and
   domain-sensitive conditions. Direct and inverse rules must be selected as
   separate profiles to prevent uncontrolled transform/inverse cycles.
+- [ ] Define a portable transform result contract: a client shall distinguish
+  a proved transform pair, a conditional pair with explicit assumptions, and
+  an unevaluated transform. It must never silently present an unsupported
+  transform as a proved closed form.
 - [ ] Establish a dedicated transform rule-set repository after the above
   semantics, variable binding, normalization, and convergence requirements are
   specified and schema-validated.
@@ -85,6 +89,14 @@ This document outlines the strategic vision and upcoming milestones for the Open
   everywhere, and equality under stated assumptions in rule metadata.
 - [ ] Require profile orientation and termination declarations whenever inverse
   or bidirectional mathematical identities could form rewrite cycles.
+- [ ] Define an algorithm-result and proof-trace envelope for host operations:
+  it shall record input, output, assumptions, the selected algorithm or rule
+  identity, and nested substeps. This makes procedural and rule-based results
+  equally auditable without encoding a host implementation in a rule file.
+- [ ] Specify canonical-form contracts per algebraic structure. Flattening,
+  sorting, cancellation, and sign normalization shall be enabled only where
+  associativity, commutativity, identities, and domains justify them; scalar
+  defaults must not leak into matrices, tensors, or noncommutative products.
 
 ## Phase 4: Hybrid Architecture (SMT Solvers)
 *Combine rule-based rewriting with formal constraint solvers.*
@@ -98,7 +110,16 @@ This document outlines the strategic vision and upcoming milestones for the Open
 
 1. **Procedural Algorithms vs. Pattern Matching**
    - **Limitation**: Pure JSON rewrite rules cannot efficiently encode full procedural algorithms like the Risch algorithm (for integration), the full GrÃ¶bner basis algorithm, or Risch-Norman extensions. These algorithms require arbitrary iterative arithmetic over rational function fields, mutable loop states, and complex branching.
-   - **Mitigation**: OSR does not aim to replace core procedural CAS algorithms. OSR is designed to sit alongside them as a heuristics engine. A host CAS should use its native procedural algorithms for standard operations, and leverage the OSR dataset for specialized knowledge (like RUBI's deep catalog of transcendental transformations).
+   - **Mitigation**: OSR does not aim to replace core procedural CAS algorithms.
+     OSR is designed to sit alongside them as a heuristics engine. A host CAS
+     should use its native procedural algorithms for standard operations, and
+     leverage the OSR dataset for specialized knowledge (like RUBI's deep
+     catalog of transcendental transformations). For symbolic integration, a
+     host should be able to try a procedural Risch-family method for the
+     elementary-function decision problem, then use an ordered OSR rule profile
+     such as RUBI when procedural integration is inapplicable or inconclusive.
+     Both paths must preserve the same OpenMath expression semantics,
+     assumptions, and proof trace.
 
 2. **Complex Entangled Domain Constraints**
    - **Limitation**: Representing deeply entangled assumptions (e.g., "if $x \in \mathbb{C}$, then $y \in \mathbb{R}$ unless $z > 0$") is extremely verbose and brittle using a rigid JSON constraint array.

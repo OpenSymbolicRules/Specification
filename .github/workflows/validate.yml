@@ -42,3 +42,9 @@ jobs:
 
       - name: Validate quantifier test example
         run: check-jsonschema --schemafile schemas/test-file.schema.json --base-uri "file://${PWD}/schemas/" examples/quantifier-negation.test.json
+
+      - name: Validate OpenMath semantic closure
+        run: python3 scripts/validate_semantic_closure.py examples
+
+      - name: Test semantic-closure validator
+        run: python3 scripts/test_validate_semantic_closure.py

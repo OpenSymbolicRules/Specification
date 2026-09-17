@@ -12,6 +12,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   specification validation workflow passes.
 
 ### Added
+- An integration architecture requirement in the roadmap: procedural
+  Risch-family methods and ordered OSR rule profiles such as RUBI are
+  complementary backends sharing OpenMath semantics, assumptions, and proof
+  traces.
+- Roadmap requirements for explicit transform-result status, hierarchical
+  algorithm proof traces, and algebraic-structure-specific canonical forms.
 - Machine-readable `ecosystem.json` manifest and schema for repository discovery.
 - README ecosystem catalogue covering the specification, rule sets, and Julia client.
 - CI validation of all JSON schema meta-schemas and the ecosystem manifest.
@@ -32,6 +38,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   catalogues, and source taxonomies in manifests.
 - Mandatory machine-readable provenance for every rule, including a method and
   stable source locator.
+- Semantic-closure validation for all operators used by a rule file, enforced
+  in specification CI in addition to JSON Schema validation.
 
 ### Changed
 - Expanded the roadmap with a transform-analysis workstream covering Laplace,
