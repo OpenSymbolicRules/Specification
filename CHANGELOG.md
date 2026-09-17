@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+- Restored the mandatory stable identity in the quantifier rule example so the
+  specification validation workflow passes.
+
 ### Added
 - Machine-readable `ecosystem.json` manifest and schema for repository discovery.
 - README ecosystem catalogue covering the specification, rule sets, and Julia client.
