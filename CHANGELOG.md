@@ -34,6 +34,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   stable source locator.
 
 ### Changed
+- Expanded the roadmap with a transform-analysis workstream covering Laplace,
+  inverse Laplace, Z, inverse Z, Fourier, and inverse Fourier transforms.
 - Made ecosystem discovery a normative specification requirement.
 - Describe OSR as a specification and interchange format rather than an institutional standard.
 

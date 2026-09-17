@@ -26,6 +26,26 @@ This document outlines the strategic vision and upcoming milestones for the Open
 - [x] Create the **`Logic`** repository to host Boolean simplification and propositional logic rules.
 - [ ] Extend the OSR schemas to support conditional branching and loop-based rewrites (if necessary for algebraic limits).
 
+### Transform analysis and operational calculus
+
+- [ ] Define OpenMath-anchored expression forms and rule profiles for the
+  **Laplace transform** and its inverse. The design must bind the source and
+  transform variables explicitly and carry the region-of-convergence or the
+  assumptions needed for inverse-transform rules.
+- [ ] Define expression forms and rule profiles for the bilateral and
+  unilateral **Z-transform**, together with their inverses. Time-index origin,
+  sidedness, and region of convergence must be representable rather than left
+  to an implementation convention.
+- [ ] Define expression forms and rule profiles for the **Fourier transform**
+  and inverse Fourier transform. A selected normalization convention must be
+  carried by the profile so that `2π` factors are never implicit.
+- [ ] Add transform-pair fixtures, shift/scaling/convolution rules, and
+  domain-sensitive conditions. Direct and inverse rules must be selected as
+  separate profiles to prevent uncontrolled transform/inverse cycles.
+- [ ] Establish a dedicated transform rule-set repository after the above
+  semantics, variable binding, normalization, and convergence requirements are
+  specified and schema-validated.
+
 ## Phase 4: Hybrid Architecture (SMT Solvers)
 *Combine rule-based rewriting with formal constraint solvers.*
 
