@@ -558,10 +558,18 @@ The `rules` field shall be a JSON array of objects, each representing one symbol
 **OSR-F-006** [Ubiquitous]
 Each rule object shall contain the mandatory fields `id` (positive integer,
 unique within the file), `pattern` (OSR-Expr), `constraints` (array of
-OSR-Expr), and `result` (OSR-Expr).
+OSR-Expr), `result` (OSR-Expr), and `provenance`.
 
 **OSR-F-007** [Ubiquitous]
 Each rule object shall be allowed to contain the optional fields `description` (string), `section` (string), `references` (object), `comment` (string), and `derivation` (string).
+
+**OSR-F-007a** [Ubiquitous]
+Each `provenance` object shall contain a `method` (`authored`, `transcribed`,
+`converted`, or `derived`) and one or more `sources`. Each source shall state
+a human-readable `name` and a stable `locator`; it may additionally state a
+source `version`, immutable `revision`, and `license`. `provenance` records
+where the OSR rule came from, while optional `references` records mathematical
+bibliography and shall not substitute for provenance.
 
 **OSR-F-008** [Ubiquitous]
 Every rule shall have the canonical identity `identity:id`, formed from the
@@ -1331,6 +1339,9 @@ Rule files converted from OSR shall cite the OSR Software License (MIT) in `meta
 
 **OSR-D-003** [Ubiquitous]
 Each rule shall be able to reference bibliographic sources (G&R, CRC, A&S) via the optional `references` field.
+
+**OSR-D-003a** [Ubiquitous]
+Each rule shall carry machine-readable provenance conforming to OSR-F-007a.
 
 ---
 

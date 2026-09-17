@@ -26,6 +26,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Required file-level `identity` values for rule files.
 - Optional conversion provenance, predicate catalogues, utility-function
   catalogues, and source taxonomies in manifests.
+- Mandatory machine-readable provenance for every rule, including a method and
+  stable source locator.
 
 ### Changed
 - Made ecosystem discovery a normative specification requirement.

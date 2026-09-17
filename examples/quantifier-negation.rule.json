@@ -13,6 +13,15 @@
       "pattern": ["Not", ["Forall", ["xs__"], "p_"]],
       "constraints": [],
       "result": ["Exists", ["xs__"], ["Not", "p_"]],
+      "provenance": {
+        "method": "authored",
+        "sources": [
+          {
+            "name": "OpenSymbolicRules Specification",
+            "locator": "examples/quantifier-negation.rule.json:1"
+          }
+        ]
+      },
       "description": "Negation of a universal quantifier."
     }
   ]
