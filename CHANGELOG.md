@@ -36,6 +36,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Expanded the roadmap with a transform-analysis workstream covering Laplace,
   inverse Laplace, Z, inverse Z, Fourier, and inverse Fourier transforms.
+- Expanded the roadmap with university-level domains including differential
+  equations, complex analysis, linear algebra, tensors, distributions,
+  discrete mathematics, probability, optimization, abstract algebra, and
+  number theory, plus their cross-cutting semantic requirements.
 - Made ecosystem discovery a normative specification requirement.
 - Describe OSR as a specification and interchange format rather than an institutional standard.
 

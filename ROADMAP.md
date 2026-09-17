@@ -46,6 +46,46 @@ This document outlines the strategic vision and upcoming milestones for the Open
   semantics, variable binding, normalization, and convergence requirements are
   specified and schema-validated.
 
+### Advanced mathematical domains
+
+- [ ] **Differential equations:** add rules and profiles for linear ordinary
+  differential equations, systems, Frobenius series, stability, and elementary
+  partial differential equations (heat, wave, and Laplace equations).
+- [ ] **Complex analysis:** represent holomorphic functions, contour
+  integration, Laurent series, residues, and explicit branch data for
+  logarithms, roots, and inverse functions.
+- [ ] **Linear algebra:** introduce dimension-aware, order-preserving matrix
+  expressions for determinant, trace, inverse, eigenvalues, diagonalization,
+  and quadratic forms before enabling matrix-specific rewrites.
+- [ ] **Tensor and differential geometry:** support shape/index-aware tensor
+  products, contractions, index permutations, differential forms, exterior
+  products, covariant derivatives, and the Hodge star.
+- [ ] **Distributions and generalized functions:** provide domain-safe forms
+  for Dirac delta, Heaviside, convolution, and distributional derivatives,
+  coordinated with the transform profiles.
+- [ ] **Discrete mathematics and generating functions:** represent sequences,
+  recurrences, finite differences, sums, products, and ordinary/exponential
+  generating functions alongside Z-transform rules.
+- [ ] **Probability and statistics:** add expectation, variance,
+  distributions, characteristic functions, and convolution with explicit
+  measurability and integrability assumptions.
+- [ ] **Optimization:** add gradients, Hessians, convexity predicates,
+  Lagrange multipliers, and Karush-Kuhn-Tucker conditions.
+- [ ] **Foundational algebra and number theory:** represent sets, relations,
+  groups, rings, fields, modules, congruences, factorization, arithmetic
+  functions, and finite-field polynomial operations.
+
+### Cross-cutting semantic capabilities
+
+- [ ] Add explicit type and domain metadata for real, complex, scalar, matrix,
+  tensor, set-valued, and dimensioned expressions.
+- [ ] Extend assumptions with analyticity, branch, convergence, shape,
+  index-range, measurability, integrability, and dimensional constraints.
+- [ ] Distinguish algebraic equality, local analytic identity, equality almost
+  everywhere, and equality under stated assumptions in rule metadata.
+- [ ] Require profile orientation and termination declarations whenever inverse
+  or bidirectional mathematical identities could form rewrite cycles.
+
 ## Phase 4: Hybrid Architecture (SMT Solvers)
 *Combine rule-based rewriting with formal constraint solvers.*
 
