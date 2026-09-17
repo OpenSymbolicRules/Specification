@@ -21,12 +21,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Bound-variable sequence wildcards for quantifier rules that preserve an
   arbitrary lexical binder list.
 - MIT licensing and an OpenMath attribution notice.
-- Canonical rule identities (`section:id`) derived from mandatory rule-file
-  sections and mandatory positive rule identifiers.
+- Canonical rule identities (`identity:id`) derived from mandatory stable
+  rule-file identities and mandatory positive rule identifiers.
+- Required file-level `identity` values for rule files.
 
 ### Changed
 - Made ecosystem discovery a normative specification requirement.
 - Describe OSR as a specification and interchange format rather than an institutional standard.
 
-- Initial structure for the Open Symbolic Rules Specification repository.
-- Foundational README.md describing the specification architecture.
+- Allow alphanumeric leaf components in section identifiers, preserving source
+  taxonomies such as `1.1.2.x` and `7.1.4a`.
+- Require non-empty OpenMath semantic declarations for rule files.

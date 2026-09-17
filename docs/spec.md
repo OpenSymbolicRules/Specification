@@ -540,7 +540,7 @@ The format shall use JSON (RFC 8259) as its serialisation syntax.
 The format shall use UTF-8 encoding without BOM.
 
 **OSR-F-003** [Ubiquitous]
-Each rule file shall contain a root JSON object with the mandatory fields `$schema`, `section`, `title`, `semantics`, and `rules`.
+Each rule file shall contain a root JSON object with the mandatory fields `$schema`, `identity`, `section`, `title`, `semantics`, and `rules`. The `identity` shall be stable and unique within a loadable profile; together with a rule's local `id`, it identifies that rule globally.
 
 **OSR-F-003a** [Ubiquitous]
 The `semantics` object shall map every mathematical operator used by the rule
@@ -564,8 +564,8 @@ OSR-Expr), and `result` (OSR-Expr).
 Each rule object shall be allowed to contain the optional fields `description` (string), `section` (string), `references` (object), `comment` (string), and `derivation` (string).
 
 **OSR-F-008** [Ubiquitous]
-Every rule shall have the canonical identity `section:id`, formed from the
-mandatory containing file's `section` and the rule's mandatory positive integer
+Every rule shall have the canonical identity `identity:id`, formed from the
+mandatory containing file's stable `identity` and the rule's mandatory positive integer
 `id`. A Loader shall reject duplicate canonical identities across its loaded
 rule set. The `id` value alone is only unique within its containing file.
 
@@ -581,7 +581,7 @@ this combined sequence shall be applied.
 > of loading the rule-files below is crucial to ensure a functional Rubi
 > integrator!"* A rule in file `1.1.1.2` loaded before file `1.1.1.3` takes
 > priority regardless of numeric id values. The `id` field serves only
-> as the local component of a canonical `section:id` identifier for
+> as the local component of a canonical `identity:id` identifier for
 > traceability and step-by-step display, not
 > as a priority key.
 
@@ -1080,7 +1080,7 @@ equivalents. The file path structure shall preserve these gaps.
 Each section shall be subdivided according to the OSR structure (e.g. 1.1 = binomial products, 1.1.1 = linear binomials, etc.).
 
 **OSR-T-003** [Ubiquitous]
-The section number of a JSON file shall correspond to the file path within the directory tree.
+The section identifier of a JSON file shall correspond to the file path within the directory tree. It may retain an alphanumeric leaf label from a source taxonomy, such as `1.1.2.x` or `7.1.4a`.
 
 **OSR-T-004** [Optional feature]
 Where a target system defines additional categories, the format shall allow custom sections numbered from 10 onwards.

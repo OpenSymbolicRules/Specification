@@ -17,9 +17,9 @@
 
     "section": {
       "type": "string",
-      "pattern": "^[0-9]+(\\.[0-9]+)*$",
-      "description": "Taxonomy section number corresponding to the rules being tested.",
-      "examples": ["1.1.1", "4.1", "8.6"]
+      "pattern": "^[0-9]+(\\.[0-9A-Za-z]+)*$",
+      "description": "Taxonomy section identifier corresponding to the rules being tested.",
+      "examples": ["1.1.1", "1.1.2.x", "7.1.4a"]
     },
 
     "title": {
