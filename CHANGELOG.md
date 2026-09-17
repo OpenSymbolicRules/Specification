@@ -24,6 +24,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Canonical rule identities (`identity:id`) derived from mandatory stable
   rule-file identities and mandatory positive rule identifiers.
 - Required file-level `identity` values for rule files.
+- Optional conversion provenance, predicate catalogues, utility-function
+  catalogues, and source taxonomies in manifests.
 
 ### Changed
 - Made ecosystem discovery a normative specification requirement.

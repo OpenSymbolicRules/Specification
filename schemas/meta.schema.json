@@ -136,6 +136,34 @@
           }
         }
       }
+    },
+    "taxonomy": {
+      "type": "array",
+      "description": "Optional source or domain taxonomy used to organize rule files."
+    },
+    "predicates": {
+      "type": "array",
+      "description": "Predicate symbols required by this rule set.",
+      "items": { "type": "string" }
+    },
+    "custom_predicates": {
+      "type": "array",
+      "description": "Additional implementation-defined predicate symbols.",
+      "items": { "type": "string" }
+    },
+    "utility_functions": {
+      "type": "array",
+      "description": "Named utility functions referenced by the rule set.",
+      "items": { "type": "string" }
+    },
+    "converter": {
+      "type": "object",
+      "description": "Provenance metadata for a conversion from an external rule source.",
+      "additionalProperties": true
+    },
+    "rubi_version": {
+      "type": "string",
+      "description": "Version of the Rubi source corpus when this rule set is derived from Rubi."
     }
   }
 }
