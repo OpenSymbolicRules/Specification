@@ -875,6 +875,16 @@ usage of `Optional` defaults.
 
 **OSR-W-003** [Ubiquitous]
 A typed wildcard shall be denoted by an underscore suffix followed by the type: `"m_integer"`, `"p_rational"`, `"n_positive"`.
+The types are `integer`, `rational`, `positive`, `negative`, `complex`, and
+`symbol`. A `symbol`-typed wildcard shall match only a symbol, never a compound
+expression or a literal.
+
+> **Design note.** `symbol` exists because a rule that binds a variable of the
+> problem — the variable of an integral, a derivative, a sum, or a limit — is
+> only valid when that operand really is a variable. RUBI writes this as
+> `Int[integrand, x_Symbol]`. Dropping the restriction turns such a rule from
+> incomplete into unsound: `Int[x_^m_., x_Symbol]` without it matches a constant
+> integrand and returns a closed form that is not its antiderivative.
 
 **OSR-W-004** [Ubiquitous]
 The Engine shall treat wildcards as binding variables captured when matching against the expression.
