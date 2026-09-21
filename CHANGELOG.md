@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- A `symbol` typed wildcard (OSR-W-003), matching only a symbol. A rule that
+  binds a variable of the problem — the variable of an integral, a derivative,
+  a sum, or a limit — is valid only when that operand really is a variable, and
+  without the restriction such a rule is unsound rather than incomplete.
+
+### Changed
+- Semantic closure is now checked over constraint expressions as well as
+  patterns and results: a constraint applies its predicates to mathematical
+  expressions, and those carry domain vocabulary that must be declared.
+- Semantic closure no longer demands an OpenMath binding for a structural head
+  of the expression language (`List`, `Condition`), for a constraint predicate
+  name, or for a wildcard in operator position (OSR-X-004). None of these
+  denotes a mathematical operation, so binding one asserts nothing.
+
 ### Fixed
 - Restored the mandatory stable identity in the quantifier rule example so the
   specification validation workflow passes.

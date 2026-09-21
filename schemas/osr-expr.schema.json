@@ -28,13 +28,13 @@
 
     "symbol": {
       "type": "string",
-      "pattern": "^[a-zA-Z$][a-zA-Z0-9_$]*(\\.(([0-9]+)|(-[0-9]+))?)?(_(integer|rational|positive|negative|complex)?)?$",
+      "pattern": "^[a-zA-Z$][a-zA-Z0-9_$]*(\\.(([0-9]+)|(-[0-9]+))?)?(_(integer|rational|positive|negative|complex|symbol)?)?$",
       "description": "Plain symbol, wildcard (x_, a., m.3, n_integer), or fluid variable ($base$). Per OSR-X-001, OSR-W-001..W-006."
     },
 
     "wildcard-mandatory": {
       "type": "string",
-      "pattern": "^[a-zA-Z][a-zA-Z0-9]*_(integer|rational|positive|negative|complex)?$",
+      "pattern": "^[a-zA-Z][a-zA-Z0-9]*_(integer|rational|positive|negative|complex|symbol)?$",
       "description": "Mandatory wildcard: x_, m_, n_integer. Per OSR-W-001, OSR-W-003."
     },
 
