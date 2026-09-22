@@ -7,6 +7,19 @@
   "required": ["$schema", "identity", "section", "title", "semantics", "rules"],
   "additionalProperties": false,
 
+  "allOf": [
+    {
+      "description": "A file that states rules has to declare the symbols those rules use. A section placeholder carries `rules: []`, has no operator to map, and an empty `semantics` is the honest value for it rather than a defect.",
+      "if": {
+        "required": ["rules"],
+        "properties": { "rules": { "minItems": 1 } }
+      },
+      "then": {
+        "properties": { "semantics": { "minProperties": 1 } }
+      }
+    }
+  ],
+
   "properties": {
 
     "$schema": {
@@ -42,8 +55,7 @@
 
     "semantics": {
       "type": "object",
-      "minProperties": 1,
-      "description": "Mapping of every mathematical operator used in the file to its official OpenMath Content Dictionary symbol.",
+      "description": "Mapping of every mathematical operator used in the file to its official OpenMath Content Dictionary symbol. Required to be non-empty only for a file that states rules; see the `allOf` guard above.",
       "additionalProperties": {
         "type": "string",
         "pattern": "^openmath:[A-Za-z][A-Za-z0-9_]*#[A-Za-z][A-Za-z0-9_]*$",
