@@ -25,6 +25,14 @@ jobs:
       - name: Validate schema meta-schemas
         run: check-jsonschema --check-metaschema schemas/*.schema.json
 
+      - name: Validate v1 schema meta-schemas
+        run: check-jsonschema --check-metaschema schemas/v1/*.schema.json
+
+      - name: Validate v1 examples
+        run: |
+          check-jsonschema --schemafile schemas/v1/ruleset.schema.json examples/v1/trigonometry.osr.json
+          check-jsonschema --schemafile schemas/v1/conformance.schema.json examples/v1/trigonometry.cases.json
+
       - name: Validate ecosystem manifest
         run: check-jsonschema --schemafile schemas/ecosystem.schema.json ecosystem.json
 

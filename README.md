@@ -31,6 +31,9 @@ rule sets. Logic is independently discoverable through the ecosystem manifest.
 ## Contents
 
 - `schemas/`: The JSON Schema definitions that all OSR rule bases must follow.
+- `docs/osr-v1.md` and `schemas/v1/`: draft of the v1 interchange format,
+  generated from Lean-verified rules (see
+  [OpenSymbolicRules/Lean](https://github.com/OpenSymbolicRules/Lean)).
 - `docs/`: Technical documentation and RFCs.
 - `ecosystem.json`: Machine-readable catalogue of OSR repositories.
 

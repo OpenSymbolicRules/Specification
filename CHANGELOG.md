@@ -8,6 +8,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Draft of the OSR v1 interchange format (`docs/osr-v1.md`): OpenMath 2.0 JSON
+  expressions, semantic registry with assurance levels, `defined_pattern`
+  applicability, per-domain Lean verification records and certification,
+  termination-checked profiles and engine conformance.
+- v1 schemas: `schemas/v1/ruleset.schema.json` and
+  `schemas/v1/conformance.schema.json`.
 - A `symbol` typed wildcard (OSR-W-003), matching only a symbol. A rule that
   binds a variable of the problem — the variable of an integral, a derivative,
   a sum, or a limit — is valid only when that operand really is a variable, and
