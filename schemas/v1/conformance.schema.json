@@ -55,7 +55,13 @@
          "properties": {"kind": {"const": "OMI"}, "integer": {"type": "integer"}}},
         {"type": "object", "required": ["kind", "applicant", "arguments"],
          "properties": {"kind": {"const": "OMA"}, "applicant": {"$ref": "#/$defs/oms"},
-           "arguments": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/om"}}}}
+           "arguments": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/om"}}}},
+        {"type": "object", "required": ["kind", "binder", "variables", "object"],
+         "properties": {"kind": {"const": "OMBIND"}, "binder": {"$ref": "#/$defs/oms"},
+           "variables": {"type": "array", "minItems": 1,
+             "items": {"type": "object", "required": ["kind", "name"],
+               "properties": {"kind": {"const": "OMV"}, "name": {"type": "string"}}}},
+           "object": {"$ref": "#/$defs/om"}}}
       ]
     }
   }

@@ -46,9 +46,18 @@ in force for repositories not yet migrated.
 
 - **V1-E-001.**  Expressions use the OpenMath 2.0 JSON encoding (2019 revision,
   §3.3), with `cdbase` `http://www.openmath.org/cd`.
-- **V1-E-002.**  Only `OMS`, `OMV`, `OMI` (JSON integer) and `OMA` with an `OMS`
-  applicant are allowed.  Floats, strings, binders, attributions and errors are
-  outside the v1 fragment, and consumers MUST reject them.
+- **V1-E-002.**  Only `OMS`, `OMV`, `OMI` (JSON integer), `OMA` with an `OMS`
+  applicant, and `OMBIND` (§3.3.11) with an `OMS` binder and a non-empty list
+  of `OMV` variables are allowed.  Floats, strings, attributions, attributed
+  variables and errors are outside the v1 fragment, and consumers MUST reject
+  them.
+- **V1-E-002a.**  In a rule, a bound variable of the pattern is a rule
+  variable: it matches the bound variable of the input (repeated binders must
+  bind the same name), and the replacement reuses it.  Matched subterms are
+  placed under the binders they were matched under, so substitution cannot
+  capture variables; the Lean statement of such rules quantifies over every
+  renaming of the bound variables and interprets pattern variables as
+  functions of the whole assignment (`OSR.Logic.BRule.Holds`).
 - **V1-E-003.**  Every `OMS` used by a rule MUST be listed in the rule's
   `symbols` and in the file's `symbols` table.
 - **V1-E-004.**  Arity is fixed per symbol in the `symbols` table.  An n-ary CD

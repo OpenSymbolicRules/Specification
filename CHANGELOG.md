@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- V1-E-002, V1-E-002a: `OMBIND` bindings (quantifiers) in the expression
+  fragment and in the v1 schemas, with capture-free rule semantics.
 - `boolean` domain (carrier `setname2#Boolean`) in the v1 schemas and
   specification, for propositional rule sets.
 - V1-R-005: integer conditions `set1#in(e, setname1#Z)`.
