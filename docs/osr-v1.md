@@ -144,6 +144,11 @@ A rule has one verification record per domain.
 - **V1-T-004.**  The generator MUST run every profile on every rule pattern
   (and further seeds) and fail if a run does not reach a normal form within
   its budget.  This is a test, not a proof of termination.
+- **V1-T-004a.**  A generator SHOULD also prove termination of each profile
+  under the reference strategy and record the proof in its verification
+  report (theorem, statement, axioms).  The Lean generator does so with one
+  monotone weight per profile (`OSR.Terminates`); a profile without such a
+  record is only known to terminate on the tested seeds.
 - **V1-T-005.**  An engine that claims v1 conformance MUST reproduce every case
   of the published conformance suites for the profiles it supports: same
   result, same sequence of rule ids, and a normal form reported exactly when

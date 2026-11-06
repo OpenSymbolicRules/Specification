@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- V1-T-004a: generators should prove termination of each profile and record
+  the proof in the verification report.
 - Draft of the OSR v1 interchange format (`docs/osr-v1.md`): OpenMath 2.0 JSON
   expressions, semantic registry with assurance levels, `defined_pattern`
   applicability, per-domain Lean verification records and certification,
