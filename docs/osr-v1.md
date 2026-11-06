@@ -63,7 +63,8 @@ in force for repositories not yet migrated.
 ## 4. Semantic registry
 
 Each symbol entry relates an OpenMath symbol to a Lean constant, per domain
-(`real` with carrier `setname1#R`, `complex` with carrier `setname1#C`).
+(`real` with carrier `setname1#R`, `complex` with carrier `setname1#C`,
+`boolean` with carrier `setname2#Boolean` for the `logic1` connectives).
 
 - **V1-S-001.**  An interpretation records:
   - `lean`: the Lean constant;
@@ -114,7 +115,9 @@ A rule record has `id`, `legacy_id`, `description`, `variables`, `pattern`,
 
 ## 6. Verification records and certification
 
-A rule has one verification record per domain.
+A rule has one verification record per domain in which it is stated.  In the
+`boolean` domain every connective is total, and `OSR.Logic.BRule.Holds <rule>`
+states that both sides have the same truth value for every assignment.
 
 - **V1-V-001.**  `status` is one of `proved`, `unproved`, `counterexample` and
   `unsupported`.  A `proved` record names the Lean `theorem`, its `statement`

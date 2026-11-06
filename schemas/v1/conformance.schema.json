@@ -14,7 +14,7 @@
       "type": "object",
       "required": ["domain", "rules", "strategy", "matching", "fuel", "reference"],
       "properties": {
-        "domain": {"enum": ["real", "complex"]},
+        "domain": {"enum": ["real", "complex", "boolean"]},
         "rules": {"type": "string"},
         "strategy": {"type": "string"},
         "matching": {"type": "string"},

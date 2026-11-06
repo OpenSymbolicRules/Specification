@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- `boolean` domain (carrier `setname2#Boolean`) in the v1 schemas and
+  specification, for propositional rule sets.
 - V1-R-005: integer conditions `set1#in(e, setname1#Z)`.
 - V1-E-005: `arith1#power` takes an expression exponent, interpreted for
   integer values only (previously a natural-number literal).
