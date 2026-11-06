@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- V1-R-005: integer conditions `set1#in(e, setname1#Z)`.
+- V1-E-005: `arith1#power` takes an expression exponent, interpreted for
+  integer values only (previously a natural-number literal).
 - V1-R-005: `relation1#gt` conditions; a condition symbol without an
   interpretation in a domain makes the rule unsupported there.
 - V1-R-005a: rules not migrated from v0.1 are reported with the reason.

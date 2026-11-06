@@ -54,7 +54,11 @@ in force for repositories not yet migrated.
 - **V1-E-004.**  Arity is fixed per symbol in the `symbols` table.  An n-ary CD
   symbol used with a fixed arity (for example binary `arith1#plus`) is noted
   in the symbol's `fragment`; longer sums are left-nested.
-- **V1-E-005.**  `arith1#power` takes a natural-number literal exponent in v1.
+- **V1-E-005.**  `arith1#power` takes any expression as exponent, but v1
+  interprets it only where the exponent is an integer, with a nonzero base if
+  the exponent is negative; elsewhere the power is undefined, so
+  `defined_pattern` rules say nothing there.  General real or complex powers
+  (`exp(a ln x)`) are outside v1.
 
 ## 4. Semantic registry
 
@@ -94,8 +98,8 @@ A rule record has `id`, `legacy_id`, `description`, `variables`, `pattern`,
   domain of definition; it never changes a defined value and never produces an
   undefined expression from a defined one.
 - **V1-R-005.**  `conditions` are explicit side conditions (v1:
-  `relation1#neq` and `relation1#gt`), both operands of which are required to
-  be defined.  A condition symbol without an interpretation in a domain (v1:
+  `relation1#neq`, `relation1#gt`, and `set1#in` with `setname1#Z` for an
+  integer-valued expression), whose operands are required to be defined.  A condition symbol without an interpretation in a domain (v1:
   `relation1#gt` over ℂ) makes the rule unsupported there.  An engine MUST
   NOT apply a rule whose conditions it cannot decide.
 - **V1-R-005a.**  A rule set migrated from v0.1 SHOULD report the v0.1 rules
