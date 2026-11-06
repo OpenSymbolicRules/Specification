@@ -33,6 +33,7 @@ in force for repositories not yet migrated.
 | `<ruleset>.osr.json` | `schemas/v1/ruleset.schema.json` | Rules, symbols, profiles, verification records |
 | `registry.json` | — (subset of the rule-set `symbols` schema) | Every symbol of the semantic registry |
 | `<suite>.cases.json` | `schemas/v1/conformance.schema.json` | Engine conformance cases |
+| `<ruleset>.report.json`, `<ruleset>.report.md` | — | Verification report: metrics per domain, rules not migrated, termination proofs, strategy runs |
 
 - **V1-F-001.**  A rule-set file MUST validate against
   `schemas/v1/ruleset.schema.json`.
@@ -92,8 +93,14 @@ A rule record has `id`, `legacy_id`, `description`, `variables`, `pattern`,
   replacement is defined and has the same value.  A rewrite may enlarge the
   domain of definition; it never changes a defined value and never produces an
   undefined expression from a defined one.
-- **V1-R-005.**  `conditions` are explicit side conditions (v1: `relation1#neq`).
-  An engine MUST NOT apply a rule whose conditions it cannot decide.
+- **V1-R-005.**  `conditions` are explicit side conditions (v1:
+  `relation1#neq` and `relation1#gt`), both operands of which are required to
+  be defined.  A condition symbol without an interpretation in a domain (v1:
+  `relation1#gt` over ℂ) makes the rule unsupported there.  An engine MUST
+  NOT apply a rule whose conditions it cannot decide.
+- **V1-R-005a.**  A rule set migrated from v0.1 SHOULD report the v0.1 rules
+  it does not migrate, with the reason, in its verification report; a rule is
+  never dropped silently.
 - **V1-R-006.**  `provenance.method` is one of `authored`, `transcribed`,
   `converted` and `derived`; `sources` preserve the original attributions and
   licenses.  A rule migrated from v0.1 carries its v0.1 identity in

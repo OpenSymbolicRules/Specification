@@ -8,6 +8,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- V1-R-005: `relation1#gt` conditions; a condition symbol without an
+  interpretation in a domain makes the rule unsupported there.
+- V1-R-005a: rules not migrated from v0.1 are reported with the reason.
+- Per-rule-set verification reports (`<ruleset>.report.json`, `.md`) in the
+  file table.
 - V1-T-004a: generators should prove termination of each profile and record
   the proof in the verification report.
 - Draft of the OSR v1 interchange format (`docs/osr-v1.md`): OpenMath 2.0 JSON
