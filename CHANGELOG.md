@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- V1-R-005b: `independent` matching constraints (v0.1 `FreeQ`) in rules and
+  in the rule-set schema.
 - V1-E-002, V1-E-002a: `OMBIND` bindings (quantifiers) in the expression
   fragment and in the v1 schemas, with capture-free rule semantics.
 - `boolean` domain (carrier `setname2#Boolean`) in the v1 schemas and

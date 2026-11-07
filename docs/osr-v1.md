@@ -112,6 +112,14 @@ A rule record has `id`, `legacy_id`, `description`, `variables`, `pattern`,
   integer-valued expression), whose operands are required to be defined.  A condition symbol without an interpretation in a domain (v1:
   `relation1#gt` over ℂ) makes the rule unsupported there.  An engine MUST
   NOT apply a rule whose conditions it cannot decide.
+- **V1-R-005b.**  `independent` lists matching constraints `{"variable": v,
+  "of": x}`, where `x` is the pattern variable of a binder: a match is valid
+  only if the subterm matched by `v` does not mention, free, the variable the
+  input binds at `x` (v0.1 `FreeQ`).  This is a constraint on matching, like
+  V1-E-002a, not a mathematical condition, so it needs no OpenMath symbol; an
+  engine checks it syntactically.  In the rule statement, `v` denotes a
+  function of the assignment that does not depend on the bound variable
+  (`OSR.Logic.BRule.Holds`).
 - **V1-R-005a.**  A rule set migrated from v0.1 SHOULD report the v0.1 rules
   it does not migrate, with the reason, in its verification report; a rule is
   never dropped silently.
