@@ -47,10 +47,15 @@ in force for repositories not yet migrated.
 - **V1-E-001.**  Expressions use the OpenMath 2.0 JSON encoding (2019 revision,
   §3.3), with `cdbase` `http://www.openmath.org/cd`.
 - **V1-E-002.**  Only `OMS`, `OMV`, `OMI` (JSON integer), `OMA` with an `OMS`
-  applicant, and `OMBIND` (§3.3.11) with an `OMS` binder and a non-empty list
-  of `OMV` variables are allowed.  Floats, strings, attributions, attributed
+  applicant, `OMBIND` (§3.3.11) with an `OMS` binder and a non-empty list of
+  `OMV` variables, and the residual integrals of V1-E-002b are allowed.  Floats, strings, attributions, attributed
   variables and errors are outside the v1 fragment, and consumers MUST reject
   them.
+- **V1-E-002b.**  A *residual integral* is an `OMA` whose applicant is
+  `OMA(calculus1#int, [OMBIND(fns1#lambda, [x], H)])` and whose only argument
+  is `OMV x`, the variable bound by the replacement's lambda: the indefinite
+  integral of `λx. H` evaluated at `x`, as in the FMP of `calculus1#int`.  It
+  may only occur in the replacement of an antiderivative rule (V1-R-005c).
 - **V1-E-002a.**  In a rule, a bound variable of the pattern is a rule
   variable: it matches the bound variable of the input (repeated binders must
   bind the same name), and the replacement reuses it.  Matched subterms are
@@ -120,6 +125,17 @@ A rule record has `id`, `legacy_id`, `description`, `variables`, `pattern`,
   engine checks it syntactically.  In the rule statement, `v` denotes a
   function of the assignment that does not depend on the bound variable
   (`OSR.Logic.BRule.Holds`).
+- **V1-R-005c.**  An antiderivative rule rewrites `int(λx. F)` to `λx. G`.
+  Where `F` is defined on a neighbourhood of a point, `G` is defined on a
+  neighbourhood of it and has derivative `F` there.  When `G` contains
+  residual integrals `int(λx. H_i)(x)` (V1-E-002b), the residual integrands
+  are defined on a neighbourhood of the point too, and the statement holds for
+  **every** choice of functions with derivative `H_i` at the point in place of
+  the residual integrals (`OSR.Calculus.AntiderivRecHolds`): whatever
+  antiderivatives a consumer finds later, the result is an antiderivative of
+  `F`.  An engine MUST NOT apply a rule with residual integrals unless it can
+  continue rewriting inside them; the v1 reference rewriter does not apply
+  them.
 - **V1-R-005a.**  A rule set migrated from v0.1 SHOULD report the v0.1 rules
   it does not migrate, with the reason, in its verification report; a rule is
   never dropped silently.

@@ -8,6 +8,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- V1-E-002b, V1-R-005c: antiderivative rules and residual integrals
+  `int(λx. H)(x)` (an `OMA` whose applicant is `calculus1#int` applied to a
+  lambda, the form of the CD's FMP), in the text and in the rule-set schema.
+  Engines that cannot continue inside a residual integral must not apply the
+  rule.
 - V1-R-005b: `independent` matching constraints (v0.1 `FreeQ`) in rules and
   in the rule-set schema.
 - V1-E-002, V1-E-002a: `OMBIND` bindings (quantifiers) in the expression
