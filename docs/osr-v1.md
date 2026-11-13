@@ -125,6 +125,16 @@ A rule record has `id`, `legacy_id`, `description`, `variables`, `pattern`,
   engine checks it syntactically.  In the rule statement, `v` denotes a
   function of the assignment that does not depend on the bound variable
   (`OSR.Logic.BRule.Holds`).
+- **V1-R-005d.**  An engine MAY decide a condition whose operands, with the
+  match substituted, are closed rational expressions (integers with `+`, `-`,
+  `×`, `÷`, unary minus and integer powers), by exact rational arithmetic; an
+  operand that is not closed, or whose evaluation divides by zero or raises
+  to a non-integer power, leaves the condition undecided, and V1-R-005
+  applies.  A decided `true` implies the condition in the real and complex
+  interpretations (`OSR.Cond.decide?_sound`).  The calculus reference
+  rewriter (derivative, limit and antiderivative rules) applies a conditional
+  rule exactly when all its conditions are decided `true`; the field-rule
+  reference rewriter does not apply conditional rules yet.
 - **V1-R-005c.**  An antiderivative rule rewrites `int(λx. F)` to `λx. G`.
   Where `F` is defined on a neighbourhood of a point, `G` is defined on a
   neighbourhood of it and has derivative `F` there.  When `G` contains

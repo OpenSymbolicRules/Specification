@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- V1-R-005d: exact decision of conditions whose operands are closed rational
+  expressions after matching; the calculus reference rewriter applies a
+  conditional rule when all its conditions are decided true.
 - V1-E-002b, V1-R-005c: antiderivative rules and residual integrals
   `int(λx. H)(x)` (an `OMA` whose applicant is `calculus1#int` applied to a
   lambda, the form of the CD's FMP), in the text and in the rule-set schema.
