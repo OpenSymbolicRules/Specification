@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- V1-R-005: `relation1#eq` is a condition symbol (both operands defined and
+  equal), so v0.1 `EqQ` conditions can be stated; V1-R-005d decides it like
+  `relation1#neq`.
 - V1-R-005d: exact decision of conditions whose operands are closed rational
   expressions after matching; the calculus reference rewriter applies a
   conditional rule when all its conditions are decided true.

@@ -113,8 +113,8 @@ A rule record has `id`, `legacy_id`, `description`, `variables`, `pattern`,
   domain of definition; it never changes a defined value and never produces an
   undefined expression from a defined one.
 - **V1-R-005.**  `conditions` are explicit side conditions (v1:
-  `relation1#neq`, `relation1#gt`, and `set1#in` with `setname1#Z` for an
-  integer-valued expression), whose operands are required to be defined.  A condition symbol without an interpretation in a domain (v1:
+  `relation1#neq`, `relation1#eq`, `relation1#gt`, and `set1#in` with
+  `setname1#Z` for an integer-valued expression), whose operands are required to be defined.  A condition symbol without an interpretation in a domain (v1:
   `relation1#gt` over ℂ) makes the rule unsupported there.  An engine MUST
   NOT apply a rule whose conditions it cannot decide.
 - **V1-R-005b.**  `independent` lists matching constraints `{"variable": v,
