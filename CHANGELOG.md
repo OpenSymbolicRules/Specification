@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- V1-R-005e: strengthened rules (corrected variants), which append conditions
+  to the converted v0.1 conditions under a new `id`, the same `legacy_id` and
+  a `strengthened:` finding; the refuted rule as stated is kept.
 - V1-R-005: `relation1#eq` is a condition symbol (both operands defined and
   equal), so v0.1 `EqQ` conditions can be stated; V1-R-005d decides it like
   `relation1#neq`.

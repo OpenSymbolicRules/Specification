@@ -149,6 +149,18 @@ A rule record has `id`, `legacy_id`, `description`, `variables`, `pattern`,
 - **V1-R-005a.**  A rule set migrated from v0.1 SHOULD report the v0.1 rules
   it does not migrate, with the reason, in its verification report; a rule is
   never dropped silently.
+- **V1-R-005e.**  A *strengthened* rule (a corrected variant) is a migrated
+  rule whose conditions are the converted v0.1 conditions followed by added
+  ones, typically the non-degeneracy conditions (`relation1#neq`) that the
+  v0.1 rule leaves to rule order or to evaluation.  It has its own `id`
+  (conventionally the id of the rule as stated with the suffix
+  `_nondegenerate`), the same `legacy_id`, and a finding beginning with
+  `strengthened:` that names the added conditions.  Its pattern and
+  replacement are those of the converted v0.1 rule.  It does not replace the
+  rule as stated: when that rule is refuted, the refuted rule stays in the
+  rule set with its counterexample.  A faithfulness check accepts the added
+  conditions only with the `strengthened:` finding and reports strengthened
+  rules separately.
 - **V1-R-006.**  `provenance.method` is one of `authored`, `transcribed`,
   `converted` and `derived`; `sources` preserve the original attributions and
   licenses.  A rule migrated from v0.1 carries its v0.1 identity in
