@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- V1-R-005e: a strengthened rule may be distributed unproved, with its
+  numerical evidence in a `numerical:` finding.
 - V1-R-005e: strengthened rules (corrected variants), which append conditions
   to the converted v0.1 conditions under a new `id`, the same `legacy_id` and
   a `strengthened:` finding; the refuted rule as stated is kept.

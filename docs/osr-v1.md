@@ -160,7 +160,11 @@ A rule record has `id`, `legacy_id`, `description`, `variables`, `pattern`,
   rule as stated: when that rule is refuted, the refuted rule stays in the
   rule set with its counterexample.  A faithfulness check accepts the added
   conditions only with the `strengthened:` finding and reports strengthened
-  rules separately.
+  rules separately.  A strengthened rule MAY be distributed before it is
+  proved: its verification records are then `unproved`, and a finding
+  beginning with `numerical:` states the evidence (how many assignments and
+  points were checked, and how).  Numerical evidence is not a proof; an
+  engine SHOULD treat such a rule like any other unproved rule.
 - **V1-R-006.**  `provenance.method` is one of `authored`, `transcribed`,
   `converted` and `derived`; `sources` preserve the original attributions and
   licenses.  A rule migrated from v0.1 carries its v0.1 identity in
