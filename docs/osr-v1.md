@@ -113,9 +113,12 @@ A rule record has `id`, `legacy_id`, `description`, `variables`, `pattern`,
   domain of definition; it never changes a defined value and never produces an
   undefined expression from a defined one.
 - **V1-R-005.**  `conditions` are explicit side conditions (v1:
-  `relation1#neq`, `relation1#eq`, `relation1#gt`, and `set1#in` with
-  `setname1#Z` for an integer-valued expression), whose operands are required to be defined.  A condition symbol without an interpretation in a domain (v1:
-  `relation1#gt` over ℂ) makes the rule unsupported there.  An engine MUST
+  `relation1#neq`, `relation1#eq`, `relation1#gt`, `relation1#geq`, and
+  `set1#in` with `setname1#Z` for an integer-valued expression), whose
+  operands are required to be defined, and binary `logic1#or` of two
+  conditions, which holds when one of them holds.  A condition symbol without
+  an interpretation in a domain (v1: `relation1#gt` and `relation1#geq` over
+  ℂ) makes the rule unsupported there.  An engine MUST
   NOT apply a rule whose conditions it cannot decide.
 - **V1-R-005b.**  `independent` lists matching constraints `{"variable": v,
   "of": x}`, where `x` is the pattern variable of a binder: a match is valid
@@ -130,7 +133,8 @@ A rule record has `id`, `legacy_id`, `description`, `variables`, `pattern`,
   `×`, `÷`, unary minus and integer powers), by exact rational arithmetic; an
   operand that is not closed, or whose evaluation divides by zero or raises
   to a non-integer power, leaves the condition undecided, and V1-R-005
-  applies.  A decided `true` implies the condition in the real and complex
+  applies.  A `logic1#or` is decided `true` when one side is decided `true`,
+  `false` when both are decided `false`, and is undecided otherwise.  A decided `true` implies the condition in the real and complex
   interpretations (`OSR.Cond.decide?_sound`).  The calculus reference
   rewriter (derivative, limit and antiderivative rules) applies a conditional
   rule exactly when all its conditions are decided `true`; the field-rule

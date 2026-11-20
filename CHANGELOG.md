@@ -8,6 +8,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- V1-R-005: `relation1#geq` is a condition symbol (both operands defined, the
+  first greater than or equal to the second; no complex interpretation) and
+  binary `logic1#or` joins two conditions, so v0.1 `GeQ`, `LeQ`, `Not[LtQ]`,
+  `Not[GtQ]` and `Or` conditions can be stated; V1-R-005d decides them.
 - V1-R-005e: a strengthened rule may be distributed unproved, with its
   numerical evidence in a `numerical:` finding.
 - V1-R-005e: strengthened rules (corrected variants), which append conditions
