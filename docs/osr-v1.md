@@ -121,7 +121,9 @@ A rule record has `id`, `legacy_id`, `description`, `variables`, `pattern`,
   operands are required to be defined, and binary `logic1#or` of two
   conditions, which holds when one of them holds.  A condition symbol without
   an interpretation in a domain (v1: `relation1#gt` and `relation1#geq` over
-  ℂ) makes the rule unsupported there.  An engine MUST
+  ℂ) makes the rule unsupported there.  Antiderivative and derivative rules may
+  have conditions; a conditional derivative rule holds for every assignment
+  satisfying them (`OSR.Calculus.DerivHoldsUnder`).  An engine MUST
   NOT apply a rule whose conditions it cannot decide.
 - **V1-R-005b.**  `independent` lists matching constraints `{"variable": v,
   "of": x}`, where `x` is the pattern variable of a binder: a match is valid
