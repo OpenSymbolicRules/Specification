@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- V1-E-002b: a residual integral may be evaluated at an expression `g` of
+  the bound variable, `int(λx. H)(g)` (v0.1 `Subst[Int[H, x], x, g]`);
+  V1-R-005c states its meaning (`OSR.Calculus.AntiderivSubstHolds`).
 - V1-R-005: `relation1#geq` is a condition symbol (both operands defined, the
   first greater than or equal to the second; no complex interpretation) and
   binary `logic1#or` joins two conditions, so v0.1 `GeQ`, `LeQ`, `Not[LtQ]`,

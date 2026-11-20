@@ -54,8 +54,11 @@ in force for repositories not yet migrated.
 - **V1-E-002b.**  A *residual integral* is an `OMA` whose applicant is
   `OMA(calculus1#int, [OMBIND(fns1#lambda, [x], H)])` and whose only argument
   is `OMV x`, the variable bound by the replacement's lambda: the indefinite
-  integral of `λx. H` evaluated at `x`, as in the FMP of `calculus1#int`.  It
-  may only occur in the replacement of an antiderivative rule (V1-R-005c).
+  integral of `λx. H` evaluated at `x`, as in the FMP of `calculus1#int`.  The
+  argument may also be an expression `g` of that variable (v0.1
+  `Subst[Int[H, x], x, g]`): the indefinite integral of `λx. H` evaluated at
+  `g`.  It may only occur in the replacement of an antiderivative rule
+  (V1-R-005c).
 - **V1-E-002a.**  In a rule, a bound variable of the pattern is a rule
   variable: it matches the bound variable of the input (repeated binders must
   bind the same name), and the replacement reuses it.  Matched subterms are
@@ -147,7 +150,11 @@ A rule record has `id`, `legacy_id`, `description`, `variables`, `pattern`,
   **every** choice of functions with derivative `H_i` at the point in place of
   the residual integrals (`OSR.Calculus.AntiderivRecHolds`): whatever
   antiderivatives a consumer finds later, the result is an antiderivative of
-  `F`.  An engine MUST NOT apply a rule with residual integrals unless it can
+  `F`.  A residual integral evaluated at `g` (V1-E-002b) requires `g` to be
+  defined near the point and `H_i` near `g` at the point, and the functions
+  replacing it have derivative `H_i` at `g` at the point; the result reads them
+  composed with `g` (`OSR.Calculus.AntiderivSubstHolds`).  An engine MUST NOT
+  apply a rule with residual integrals unless it can
   continue rewriting inside them; the v1 reference rewriter does not apply
   them.
 - **V1-R-005a.**  A rule set migrated from v0.1 SHOULD report the v0.1 rules
