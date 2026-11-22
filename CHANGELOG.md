@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- V1-R-005f documents independently proved generalized variants, their
+  provenance, separate reporting and per-domain certification requirements.
 - V1-R-005: derivative rules may have conditions too (a conditional
   derivative rule holds for every assignment satisfying them,
   `OSR.Calculus.DerivHoldsUnder`), so a refuted derivative rule can have a

@@ -178,6 +178,18 @@ A rule record has `id`, `legacy_id`, `description`, `variables`, `pattern`,
   beginning with `numerical:` states the evidence (how many assignments and
   points were checked, and how).  Numerical evidence is not a proof; an
   engine SHOULD treat such a rule like any other unproved rule.
+- **V1-R-005f.**  An independently proved *generalized* derived variant MAY
+  replace, rather than preserve, the converted v0.1 conditions. It MUST have
+  its own `id`, retain the source `legacy_id`, pattern and replacement, and
+  preserve the source matching constraints (documented additions are allowed
+  as in V1-R-005b). It MUST carry `provenance.method: derived` plus a
+  `generalized:` finding identifying the changed conditions and the source
+  rule. It MUST have at least one `proved` verification record and MUST NOT
+  replace the converted rule or claim to be a faithful transcription of its
+  conditions. The usual proof audit and per-domain symbol-mapping requirements
+  apply independently to the generalized variant. A structural faithfulness
+  check MUST report such variants separately; it cannot establish their
+  mathematical validity merely from their verification metadata.
 - **V1-R-006.**  `provenance.method` is one of `authored`, `transcribed`,
   `converted` and `derived`; `sources` preserve the original attributions and
   licenses.  A rule migrated from v0.1 carries its v0.1 identity in
