@@ -26,6 +26,41 @@ class SemanticClosureTests(unittest.TestCase):
 
         self.assertEqual(validate_file(path), [])
 
+    def test_local_bindings_are_structural_and_values_are_checked(self) -> None:
+        path = self.write_rule_file({
+            "semantics": {"Multiply": "openmath:arith1#times", "Denominator": "openmath:osr#Denominator"},
+            "rules": [{"id": 1, "pattern": "x", "result": ["With",
+                ["List", ["Set", "k", ["Denominator", "m"]]], ["Multiply", "k", "x"]]}],
+        })
+        self.assertEqual(validate_file(path), [])
+
+    def test_local_binding_does_not_hide_undeclared_value_operator(self) -> None:
+        path = self.write_rule_file({
+            "semantics": {"Multiply": "openmath:arith1#times"},
+            "rules": [{"id": 1, "pattern": "x", "result": ["With",
+                ["List", ["Set", "k", ["Mystery", "m"]]], ["Multiply", "k", "x"]]}],
+        })
+        self.assertTrue(any("Mystery" in error for error in validate_file(path)))
+
+    def test_malformed_local_bindings_are_rejected(self) -> None:
+        for binding in (["List", ["Set", "k"]],
+                        ["List", ["Set", "k", 1], ["Set", "k", 2]],
+                        ["List", ["Set", "k_", 1]]):
+            with self.subTest(binding=binding):
+                path = self.write_rule_file({"semantics": {"With": "openmath:osr#With", "Set": "openmath:osr#Set"},
+                    "rules": [{"id": 1, "pattern": "x", "result": ["With", binding, "k"]}]})
+                self.assertTrue(any("invalid With" in error for error in validate_file(path)))
+
+    def test_rubi_star_requires_its_mathematical_projection(self) -> None:
+        rule = {"id": 1, "pattern": "x", "result": ["Star", "a", "x"]}
+        good = self.write_rule_file({"semantics": {"Star": "openmath:arith1#times"}, "rules": [rule]})
+        self.assertEqual(validate_file(good), [])
+        bad = self.write_rule_file({"semantics": {"Star": "openmath:transc1#sin"}, "rules": [rule]})
+        self.assertTrue(any("Star" in error for error in validate_file(bad)))
+        bad_arity = self.write_rule_file({"semantics": {"Star": "openmath:arith1#times"},
+            "rules": [{"id": 1, "pattern": "x", "result": ["Star", "a"]}]})
+        self.assertTrue(any("invalid Star" in error for error in validate_file(bad_arity)))
+
     def test_rejects_undeclared_expression_heads(self) -> None:
         path = self.write_rule_file({
             "semantics": {"Add": "openmath:arith1#plus"},

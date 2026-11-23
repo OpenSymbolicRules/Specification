@@ -8,6 +8,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Specify lexical `With` binding and the optional RUBI `Star` extension,
+  distinguishing its operational behavior from its mathematical projection.
+- Check `With` binding syntax and `Star` arity and mapping during semantic
+  closure validation, without assigning invented OpenMath symbols.
+
 - V1-R-005f documents independently proved generalized variants, their
   provenance, separate reporting and per-domain certification requirements.
 - V1-R-005: derivative rules may have conditions too (a conditional
@@ -74,6 +79,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   denotes a mathematical operation, so binding one asserts nothing.
 
 ### Fixed
+- Escape literal numbered argument placeholders in the specification so
+  Documenter does not interpret them as Julia interpolation.
 - Restored the mandatory stable identity in the quantifier rule example so the
   specification validation workflow passes.
 

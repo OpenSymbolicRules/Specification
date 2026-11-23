@@ -27,6 +27,30 @@ CONSTRAINT_COMBINATORS = {"Not", "And", "Or", "If"}
 # match any of the six trigonometric heads at once (OSR-X-004).  It names a
 # binding rather than an operation.
 WILDCARD_HEAD = re.compile(r"(_{1,3}$)|(^[a-zA-Z][a-zA-Z0-9]*\.-?[0-9]*$)|(^~)")
+LOCAL_NAME = re.compile(r"^[a-zA-Z$][a-zA-Z0-9$]*$")
+
+
+def valid_with(expr: list[Any]) -> bool:
+    if len(expr) != 3 or not isinstance(expr[1], list) or not expr[1] or expr[1][0] != "List":
+        return False
+    names: list[str] = []
+    for binding in expr[1][1:]:
+        if (not isinstance(binding, list) or len(binding) != 3 or binding[0] != "Set"
+                or not isinstance(binding[1], str) or not LOCAL_NAME.fullmatch(binding[1])):
+            return False
+        names.append(binding[1])
+    return len(names) == len(set(names))
+
+
+def structural_errors(expr: Any) -> Iterator[str]:
+    if not isinstance(expr, list) or not expr:
+        return
+    if expr[0] == "With" and not valid_with(expr):
+        yield "invalid With binding list or arity"
+    if expr[0] == "Star" and len(expr) != 3:
+        yield "invalid Star arity"
+    for child in expr[1:]:
+        yield from structural_errors(child)
 
 
 def is_wildcard_head(head: str) -> bool:
@@ -44,6 +68,11 @@ def expression_heads(expression: Any) -> Iterator[str]:
         return
     head = expression[0]
     if not isinstance(head, str):
+        return
+    if head == "With" and valid_with(expression):
+        for binding in expression[1][1:]:
+            yield from expression_heads(binding[2])
+        yield from expression_heads(expression[2])
         return
     if head not in STRUCTURAL_HEADS and not is_wildcard_head(head):
         yield head
@@ -87,12 +116,16 @@ def validate_file(path: Path) -> list[str]:
     errors: list[str] = []
     for rule in document["rules"]:
         rule_id = rule.get("id", "?")
+        for expr in [rule.get("pattern"), rule.get("result"), *(rule.get("constraints") or ())]:
+            errors.extend(f"{path}: rule {rule_id} has {message}" for message in structural_errors(expr))
         used = set(expression_heads(rule.get("pattern"))) | set(expression_heads(rule.get("result")))
         for constraint in rule.get("constraints") or ():
             used |= set(constraint_heads(constraint))
         missing = sorted(used - set(semantics))
         if missing:
             errors.append(f"{path}: rule {rule_id} has undeclared OpenMath semantics for {', '.join(missing)}")
+        if "Star" in used and "Star" in semantics and semantics["Star"] != "openmath:arith1#times":
+            errors.append(f"{path}: rule {rule_id} maps Star to an unsupported mathematical projection")
     return errors
 
 

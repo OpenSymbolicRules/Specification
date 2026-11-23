@@ -339,11 +339,11 @@ OSR-Expr shall define the following **integration-specific operators** with no e
 
 | Operator | Arity | Semantics |
 |----------|-------|-----------|
-| `Int` | 2 | Recursive integration call: ∫ $1 d$2 |
-| `Dist` | 3 | Constant distribution: $1 · ∫ $2 d$3 |
-| `Subst` | 3 | Substitution: $1 with $2 → $3 |
-| `Simp` | 2 | Simplification of $1 w.r.t. $2 |
-| `ExpandIntegrand` | 2 | Expand $1 before integration w.r.t. $2 |
+| `Int` | 2 | Recursive integration call: ∫ \$1 d\$2 |
+| `Dist` | 3 | Constant distribution: \$1 · ∫ \$2 d\$3 |
+| `Subst` | 3 | Substitution: \$1 with \$2 → \$3 |
+| `Simp` | 2 | Simplification of \$1 w.r.t. \$2 |
+| `ExpandIntegrand` | 2 | Expand \$1 before integration w.r.t. \$2 |
 | `Unintegrable` | 2 | Expression is not integrable in closed form |
 | `CannotIntegrate` | 2 | Engine is unable to integrate expression |
 
@@ -439,12 +439,12 @@ Phrasebook must implement; the format defines their calling convention.
 
 | Operator | Arity | Semantics |
 |----------|-------|-----------|
-| `D` | 2 | Symbolic derivative of $1 w.r.t. $2 (Mathematica built-in) |
+| `D` | 2 | Symbolic derivative of \$1 w.r.t. \$2 (Mathematica built-in) |
 | `Dif` | 2 | OSR's own symbolic derivative (distinct from D; avoids built-in side effects) |
 | `Map` | 2 | Apply function to sub-expressions |
 | `Simplify` | 1 | General simplification |
 | `FullSimplify` | 1 | Aggressive simplification |
-| `ReplaceAll` | 2 | Substitution: $1 /. $2 |
+| `ReplaceAll` | 2 | Substitution: \$1 /. \$2 |
 | `Mods` | 2 | Modular arithmetic function used in OSR rules |
 
 ### 4.12 Operator catalogue — Structural/utility operators
@@ -482,6 +482,17 @@ OSR-Expr shall define the following **structural/utility operators**:
 | `Throw` | 1 | Throw a value to enclosing Catch |
 | `Hold` | 1 | Prevent evaluation of argument |
 | `HoldForm` | 1 | Prevent evaluation and display unevaluated |
+
+**OSR-X-020a** [Ubiquitous]
+`With` shall represent lexical, simultaneous local bindings as
+`["With", ["List", ["Set", name, value], ...], body]`. Names shall be
+distinct plain symbols. Initializers are interpreted in the surrounding scope;
+the names bind in the body, respecting nested scopes and avoiding variable
+capture. `With`, its binding `List` and binding `Set` are structural syntax;
+their initializers and body still require declared mathematical semantics.
+This specifies the subset used by the converter, not all Wolfram Language
+`With` variants. See [Wolfram's With documentation](https://reference.wolfram.com/language/ref/With.html).
+
 ### 4.13 Extensibility
 
 **OSR-X-025** [Optional feature]
@@ -489,6 +500,19 @@ Where a host system defines additional operators beyond the OSR-Expr catalogue, 
 
 **OSR-X-026** [Unwanted behaviour]
 If a OSR-Expr expression contains an operator not present in the core catalogue and not declared in `meta.json` extensions, then the Loader shall emit a warning and treat the operator as an opaque function symbol.
+
+**OSR-X-025a** [Optional feature]
+Where a rule set uses RUBI's binary `Star` operation, it shall declare the
+operation in `meta.json` extensions and retain `["Star", factor, expression]`
+in the result. Its mathematical projection is
+[`openmath:arith1#times`](https://www.openmath.org/cd/arith1.html#times), but
+that projection does not authorize an engine to erase `Star` during rewriting:
+the pinned RUBI implementation has distribution and step-display behavior.
+An engine that cannot implement the declared `Star` behavior shall decline to
+apply affected rules rather than silently substitute ordinary multiplication.
+For RUBI source revision `61e9c18ea248061cd83c67882f7c91a73cef912d`, the
+operational reference is `Rubi/IntegrationUtilityFunctions.m`, `Star[u,v]`.
+This is an OSR extension contract, not a new OpenMath Content Dictionary.
 
 ### 4.14 Compatibility and mapping
 
@@ -1481,8 +1505,8 @@ The format shall support annotations via `description` or `comment` fields.
 
 | OSR-Expr | Semantics | OpenMath equivalent | MathML equivalent |
 |-----------|-----------|--------------------|--------------------|
-| `Int` | ∫ $1 d$2 | `calculus1#int` (partial) | `<int/>` (partial) |
-| `Dist` | $1 · ∫ $2 d$3 | *(none)* | *(none)* |
+| `Int` | ∫ \$1 d\$2 | `calculus1#int` (partial) | `<int/>` (partial) |
+| `Dist` | \$1 · ∫ \$2 d\$3 | *(none)* | *(none)* |
 | `Subst` | substitution | *(none)* | *(none)* |
 | `Simp` | simplification | *(none)* | *(none)* |
 | `ExpandIntegrand` | expand before ∫ | *(none)* | *(none)* |
